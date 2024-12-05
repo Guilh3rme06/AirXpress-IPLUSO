@@ -34,3 +34,5 @@ voo = consultar_voo(1)  # Testando com o ID 1
 print(voo)
 
 fechar_conexao()
+
+print()
