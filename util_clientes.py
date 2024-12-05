@@ -1,57 +1,48 @@
+from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 
+app = Flask(__name__)
+
+# Connect to the database
 conn = sqlite3.connect('airxpress.db')
 cursor = conn.cursor()
 
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS users(
-    cliente INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT,
-    email TEXT UNIQUE
-    )
-''')
-conn.commit()
+# ... (rest of your database setup code)
 
-def userRegist(name, email):
-    for i in range(name):
-        name = input("Write your name: ")
-        email = int(input("Write your email: "))
+@app.route('/')
+def index():
+    # Retrieve all users
+    cursor.execute('SELECT * FROM users')
+    users = cursor.fetchall()
+    return render_template('index.html', users=users)
 
-    cursor.execute('INSERT INTO users (name, email) VALUES (?, ?)', (name, email))
+@app.route('/add_user', methods=['GET', 'POST'])
+def add_user():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        cursor.execute('INSERT INTO users (name, email) VALUES (?, ?)', (name, email))
+        conn.commit()
+        return redirect(url_for('index'))
+    return render_template('add_user.html')
+
+@app.route('/update_user/<int:user_id>', methods=['GET', 'POST'])
+def update_user(user_id):
+    if request.method == 'POST':
+        new_name = request.form['name']
+        new_email = request.form['email']
+        cursor.execute('''UPDATE users SET name = ?, email = ? WHERE client = ?''', (new_name, new_email, user_id))
+        conn.commit()
+        return redirect(url_for('index'))
+    cursor.execute('SELECT * FROM users WHERE client = ?', (user_id,))
+    user = cursor.fetchone()
+    return render_template('update_user.html', user=user)
+
+@app.route('/delete_user/<int:user_id>')
+def delete_user(user_id):
+    cursor.execute('DELETE FROM users WHERE client = ?', (user_id,))
     conn.commit()
-    print(f"User {name} successfully created!")
+    return redirect(url_for('index'))
 
-#Pedro e Tiago
-    # Consultar uma lista de clientes registados
-    def find_all_clients():
-        '''
-        Função para encontrar todos os clientes na tabela 'clients'.
-        :return: Uma lista com todos os clientes.
-        '''
-        cursor.execute('SELECT * FROM clients')
-        return cursor.fetchall()
-
-    #Atualiza uma lista de clientes registado
-    def update_client(client_id,new_name,new_email):
-        id = int(input('Type client id: '))
-        new_name = input('Write new name: ')
-        new_email = input('Write new email: ')
-        cursor.execute('SELECT * FROM users WHERE email = ? ', (new_email, ))
-        existing_email = cursor.fetchone()
-
-        if existing_email:
-            print('Email already exists.')
-        else:
-            cursor.execute('''
-            UPDATE users SET name = ?, email = ? WHERE client = ? ''', (new_name,new_email,client_id))
-            print(f'User {new_name} created with success!')
-        conn.commit()
-
-    #Exclui um userid de uma lista
-    def delete_client():
-        id_exc = int(input('Write the userid that you want to delete: '))
-
-        cursor.execute('DELETE FROM clients WHERE id = ?', (id_exc,))
-        print(f'User with id {id_exc} success delete! ')
-
-        conn.commit()
+if __name__ == '__main__':
+    app.run(debug=True)
