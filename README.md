@@ -48,7 +48,7 @@ pip install -r requirements.txt
 bash
 python src/main.py
 ## 🗂️ Estrutura do Projeto
-plaintext
+```plaintext
 📁 AirXpress-IPLUSO
 ├── 📂 assets                     # Recursos visuais
 ├── 📂 db
@@ -65,4 +65,4 @@ plaintext
 │   ├── util_bookings.py            # Funções de suporte
 ├── README.md                 # Documentação do projeto
 └── requirements.txt          # Dependências do projeto
-## ✈️ AirXpress
+```
