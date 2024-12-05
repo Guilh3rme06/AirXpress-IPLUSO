@@ -8,7 +8,7 @@ def criar_tabela_voos():
     CREATE TABLE IF NOT EXISTS voos (
         id INTEGER PRIMARY KEY,
         origem TEXT NOT NULL,
-        destino TEXT NOT NULL,
+        destino TEXT NOT NULL, 
         data TEXT NOT NULL, -- Formato ISO: YYYY-MM-DD
         capacidade INTEGER NOT NULL -- Capacidade como número
     )
