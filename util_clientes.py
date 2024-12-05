@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('AIREXPRESS.db')
+conn = sqlite3.connect('AIRXPRESS.db')
 cursor = conn.cursor()
 
 cursor.execute('''
