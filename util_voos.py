@@ -2,6 +2,21 @@ import sqlite3
 conexao = sqlite3.connect('airxpress-ipluso.db')
 cursor = conexao.cursor()
 
+def inserir_voos(origem, destino, data, capacidade):
+    cursor.execute('INSERT INTO voos(origem,destino,data, capacidade) VALUES (?, ?, ?, ?)', (origem, destino, data, capacidade))
+
+voos = [
+    ('Lisboa', 'Dublin', '2023-12-23', 615),
+    ('Barcelona','Madrid', '2024-02-21', 215),
+    ('Fortaleza','Rio de Janeiro','2019-09-25', 323),
+    ('Porto','Braga','2018-08-30', 556),
+    ('Liverpool','Cork','2009-01-27', 91),
+    ('Porto Alegre','Florianopolis','2014-06-23', 356)
+]
+
+for voo in voos:
+    inserir_voos(*voo)
+
 def ask_flight():
     return input('Número do voo -> ')
 
