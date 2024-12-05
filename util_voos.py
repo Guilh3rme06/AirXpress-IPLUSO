@@ -14,7 +14,6 @@ def criar_tabela_voos():
     """)
     conexao.commit()
 
-
 def inserir_voos(origem, destino, data, capacidade):
     cursor.execute('INSERT INTO voos(origem,destino,data, capacidade) VALUES (?, ?, ?, ?)', (origem, destino, data, capacidade))
 voos = [
