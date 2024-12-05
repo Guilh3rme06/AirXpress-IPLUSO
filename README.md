@@ -1,6 +1,5 @@
 ﻿# AirXpress 
 <img src="AirXpress.png" alt="logo"/>
-![AirXpress](AirXpress.png)
 
 O AirXpess é um projeto desenvolvido em Python, que permite gerenciar voos, clientes e reservas de forma prática e intuitiva. A aplicação utiliza SQLite3 como banco de dados.
 
