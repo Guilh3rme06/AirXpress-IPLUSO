@@ -2,9 +2,21 @@ import sqlite3
 conexao = sqlite3.connect('airxpress-ipluso.db')
 cursor = conexao.cursor()
 
+def criar_tabela_voos():
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS voos (
+        id INTEGER PRIMARY KEY,
+        origem TEXT NOT NULL,
+        destino TEXT NOT NULL,
+        data TEXT NOT NULL, -- Formato ISO: YYYY-MM-DD
+        capacidade INTEGER NOT NULL -- Capacidade como número
+    )
+    """)
+    conexao.commit()
+
+
 def inserir_voos(origem, destino, data, capacidade):
     cursor.execute('INSERT INTO voos(origem,destino,data, capacidade) VALUES (?, ?, ?, ?)', (origem, destino, data, capacidade))
-
 voos = [
     ('Lisboa', 'Dublin', '2023-12-23', 615),
     ('Barcelona','Madrid', '2024-02-21', 215),
@@ -13,7 +25,7 @@ voos = [
     ('Liverpool','Cork','2009-01-27', 91),
     ('Porto Alegre','Florianopolis','2014-06-23', 356)
 ]
-fwwf
+
 for voo in voos:
     inserir_voos(*voo)
 
