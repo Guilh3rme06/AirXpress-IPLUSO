@@ -1,35 +1,80 @@
-# inserir dados de exemplo : origem, data, hora, capacidade, fk_cliente, fk_aviao
-list_voos = [
-    ('Lisboa', '2022-12-01', '12:00', 200, 1, 1),
-    ('Porto', '2022-12-01', '12:00', 200, 2, 1),
-    ('Faro', '2022-12-01', '12:00', 200, 3, 1),
-    ('Funchal', '2022-12-01', '12:00', 200, 4, 1),
-    ('Porto', '2022-12-01', '12:00', 200, 5, 1)
-]
-#inserir dados de exemplo : nome, email
-list_clients =  [
-    ('Joaquim Rodrigues', 'example@gmail.com'),
-    ('Joao Almeida', 'example2@gmail.com'),
-    ('Paula Santos', 'example3@gmail.com'),
-    ('Diana Silva', 'diana@gmail.com'),
-    ('Ana Pereira', 'ana@gmail.com'),
-    ('Marta Costa', 'maria@gmail.com')
+import logging
+from db import initialize_db, execute_query
+from seed_data import CLIENTES, AVIOES, VOOS, RESERVAS
 
-]
+# Configuração de logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-#inserir dados de exemplo : pk_reserva, fk_cliente, fk_voo, data
-list_reservas = [
-    (1, 1, 1, '2022-12-01'),
-    (2, 2, 2, '2022-12-01'),
-    (3, 3, 3, '2022-12-01'),
-    (4, 4, 4, '2022-12-01'),
-    (5, 5, 5, '2022-12-01'),
-    (6, 1, 1, '2022-12-01'),
-    (7, 2, 2, '2022-12-01'),
-    (8, 3, 3, '2022-12-01'),
-    (9, 4, 4, '2022-12-01'),
-    (10, 5, 5, '2022-12-01')
-]
+def insert_clientes(clientes):
+    """
+    Insere clientes no banco de dados.
+    :param clientes: lista de dicionários com os dados dos clientes.
+    """
+    for cliente in clientes:
+        execute_query(
+            "INSERT INTO clientes (nome, email) VALUES (?, ?);",
+            (cliente["nome"], cliente["email"])
+        )
+    logging.info(f"{len(clientes)} clientes inseridos com sucesso!")
 
 
+def insert_avioes(avioes):
+    """
+    Insere aviões no banco de dados.
+    :param avioes: lista de dicionários com os dados dos aviões.
+    """
+    for aviao in avioes:
+        execute_query(
+            "INSERT INTO avioes (modelo, capacidade) VALUES (?, ?);",
+            (aviao["modelo"], aviao["capacidade"])
+        )
+    logging.info(f"{len(avioes)} aviões inseridos com sucesso!")
 
+def insert_voos(voos):
+    """
+    Insere voos no banco de dados.
+    :param voos: lista de dicionários com os dados dos voos.
+    """
+    for voo in voos:
+        execute_query(
+            "INSERT INTO voos (origem, destino, data_partida, data_chegada, fk_aviao) VALUES (?, ?, ?, ?, ?);",
+            (voo["origem"], voo["destino"], voo["data_partida"], voo["data_chegada"], voo["fk_aviao"])
+        )
+    logging.info(f"{len(voos)} voos inseridos com sucesso!")
+
+def insert_reservas(reservas):
+    """
+    Insere reservas no banco de dados.
+    :param reservas: lista de dicionários com os dados das reservas.
+    """
+    for reserva in reservas:
+        execute_query(
+            "INSERT INTO reservas (fk_cliente, fk_voo, data) VALUES (?, ?, ?);",
+            (reserva["fk_cliente"], reserva["fk_voo"], reserva["data"])
+        )
+    logging.info(f"{len(reservas)} reservas inseridas com sucesso!")
+
+def seed_data():
+    """
+    Insere dados fictícios nas tabelas do banco de dados.
+    """
+    try:
+        # Inserção nas tabelas
+        insert_clientes(CLIENTES)
+        insert_avioes(AVIOES)
+        insert_voos(VOOS)
+        insert_reservas(RESERVAS)
+
+        logging.info("Dados fictícios inseridos com sucesso!")
+    except Exception as e:
+        logging.error(f"Erro ao inserir dados fictícios: {e}")
+        raise
+
+if __name__ == "__main__":
+    # Inicializa o banco de dados
+    logging.info("Inicializando o banco de dados...")
+    initialize_db()
+
+    # Popula o banco de dados com dados fictícios
+    logging.info("Populando o banco de dados com dados fictícios...")
+    seed_data()
