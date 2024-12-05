@@ -3,11 +3,16 @@ import sqlite3
 
 app = Flask(__name__)
 
-# Connect to the database
 conn = sqlite3.connect('airxpress.db')
 cursor = conn.cursor()
-
-# ... (rest of your database setup code)
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS users(
+    cliente INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    email TEXT UNIQUE
+    )
+''')
+conn.commit()
 
 @app.route('/')
 def index():
