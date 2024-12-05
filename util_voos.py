@@ -13,7 +13,7 @@ voos = [
     ('Liverpool','Cork','2009-01-27', 91),
     ('Porto Alegre','Florianopolis','2014-06-23', 356)
 ]
-
+fwwf
 for voo in voos:
     inserir_voos(*voo)
 
