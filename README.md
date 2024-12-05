@@ -1,5 +1,8 @@
-﻿# AirXpress ✈️
+<div align="center">
+  <img src="assets/logo.png" width="200">
+</div>
 
+# AirXpress
 O AirXpess é um projeto desenvolvido em Python, que permite gerenciar voos, clientes e reservas de forma prática e intuitiva. A aplicação utiliza SQLite3 como banco de dados.
 
 ## 📋 Funcionalidades
@@ -34,19 +37,23 @@ O AirXpess é um projeto desenvolvido em Python, que permite gerenciar voos, cli
 Certifique-se de ter o **Python 3.10** ou superior instalado e as dependências necessárias. 
 
 ### 1. Clone o repositório:
-bash
+```bash
 git clone https://github.com/Guilh3rme06/AirXpress-IPLUSO.git
 cd AirXpress-IPLUSO
+```
 ### 2. Crie um ambiente virtual:
-bash
+```bash
 python -m venv venv
 source venv/bin/activate  # No Windows, use: venv\Scripts\activate
+```
 ### 3. Instale as dependências:
-bash
+```bash
 pip install -r requirements.txt
+```
 ### 4. Execute a aplicação:
-bash
+```bash
 python src/main.py
+```
 ## 🗂️ Estrutura do Projeto
 ```plaintext
 📁 AirXpress-IPLUSO
@@ -62,7 +69,7 @@ python src/main.py
 │   ├── interface.py               # Funções PRINT
 │   ├── util_flights.py            # Funções de suporte
 │   ├── util_clients.py            # Funções de suporte
-│   ├── util_bookings.py            # Funções de suporte
-├── README.md                 # Documentação do projeto
-└── requirements.txt          # Dependências do projeto
+│   ├── util_bookings.py           # Funções de suporte
+├── README.md                      # Documentação do projeto
+└── requirements.txt               # Dependências do projeto
 ```
