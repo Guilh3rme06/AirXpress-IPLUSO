@@ -16,7 +16,7 @@ def criar_tabela_voos():
     conexao.commit()
 
 def consultar_voo(id_voo):
-    cursor.execute('''
+    cursor.execute(''' 
     SELECT origem, destino, data, capacidade
     FROM voos
     WHERE id = ?
