@@ -1,5 +1,4 @@
-﻿# AirXpress 
-<img src="AirXpress.png" alt="logo"/>
+﻿# AirXpress ✈️
 
 O AirXpess é um projeto desenvolvido em Python, que permite gerenciar voos, clientes e reservas de forma prática e intuitiva. A aplicação utiliza SQLite3 como banco de dados.
 
@@ -36,8 +35,8 @@ Certifique-se de ter o **Python 3.10** ou superior instalado e as dependências 
 
 ### 1. Clone o repositório:
 bash
-git clone https://github.com/kalebeccs/calcula-imc-ipluso.git
-cd calcula-imc-ipluso
+git clone https://github.com/Guilh3rme06/AirXpress-IPLUSO.git
+cd AirXpress-IPLUSO
 ### 2. Crie um ambiente virtual:
 bash
 python -m venv venv
@@ -47,34 +46,23 @@ bash
 pip install -r requirements.txt
 ### 4. Execute a aplicação:
 bash
-python src/app.py
+python src/main.py
 ## 🗂️ Estrutura do Projeto
 plaintext
-📁 calcula-imc-ipluso
-├── 📂 assets                 # Recursos visuais
+📁 AirXpress-IPLUSO
+├── 📂 assets                     # Recursos visuais
 ├── 📂 db
-│   ├── db.py                 # Funções para manipulação do banco de dados
+│   ├── db.py                      # Funções para manipulação do banco de dados
+│   └── init_db.py                 # Inicia banco de dados com valores fictícios
 ├── 📂 src
-│   ├── app.py                # Arquivo principal da aplicação
-│   ├── interface.py          # Funções da interface gráfica
-│   ├── users.py              # Gerenciamento de usuários
-│   └── utils.py              # Funções auxiliares
+│   ├── main.py                    # Arquivo principal da aplicação
+│   ├── flights.py                 # Manipula Voos
+│   ├── clients.py                 # Manipula Clientes
+│   ├── bookings.py                # Manipula Reservas
+│   ├── interface.py               # Funções PRINT
+│   ├── util_flights.py            # Funções de suporte
+│   ├── util_clients.py            # Funções de suporte
+│   ├── util_bookings.py            # Funções de suporte
 ├── README.md                 # Documentação do projeto
 └── requirements.txt          # Dependências do projeto
-## 📊 Cálculo de IMC
-
-O cálculo de IMC é realizado pela fórmula:
-> IMC = Peso (kg) / [Altura (m)]²
-
-### Classificação do IMC:
-| Faixa de IMC         | Classificação            |
-|-----------------------|--------------------------|
-| Abaixo de 18,5       | Abaixo do peso           |
-| 18,5 – 24,9          | Peso normal             |
-| 25,0 – 29,9          | Sobrepeso               |
-| 30,0 – 34,9          | Obesidade Grau I        |
-| 35,0 – 39,9          | Obesidade Grau II       |
-| Acima de 40,0        | Obesidade Grau III      |
-
-## Preview
-![Preview](assets/preview.png)
+## ✈️ AirXpress
