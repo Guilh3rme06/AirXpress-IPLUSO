@@ -8,8 +8,64 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
     />
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f4f4f4;
+      }
+      header {
+          background-color: #333;
+          color: #fff;
+          padding: 1rem 0;
+          text-align: center;
+      }
+      nav {
+          background-color: #444;
+          color: #fff;
+          padding: 1rem;
+          text-align: center;
+      }
+      nav ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: flex;
+          justify-content: center;
+      }
+      nav ul li {
+          margin: 0 1rem;
+      }
+      nav ul li a {
+          color: #fff;
+          text-decoration: none;
+      }
+      main {
+          padding: 2rem;
+          text-align: center;
+      }
+      footer {
+          background-color: #333;
+          color: #fff;
+          padding: 1rem 0;
+          text-align: center;
+          position: fixed;
+          width: 100%;
+          bottom: 0;
+      }
+  </style>
   </head>
   <body>
+    <header>
+      <h1>Welcome to AirXpress</h1>
+  </header>
+  <nav>
+      <ul>
+          <li><a href="{{ url_for('index_route') }}">Home</a></li>
+          <li><a href="{{ url_for('index_clientes_route') }}">Users</a></li>
+      </ul>
+  </nav>
     <div class="container mt-5">
       <h1 class="mb-4">Adicionar Novo Usuário</h1>
 
@@ -38,7 +94,7 @@
           />
         </div>
         <button type="submit" class="btn btn-success">Salvar</button>
-        <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
+        <a href="{{ url_for('index_clientes_route') }}" class="btn btn-secondary">Cancelar</a>
       </form>
     </div>
 

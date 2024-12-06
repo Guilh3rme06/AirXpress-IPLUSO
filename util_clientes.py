@@ -33,16 +33,14 @@ def insert_users(users):
     for user in users:
         insert_user(user[0], user[1])
 
-@app.route('/')
-def index():
+def index_clientes():
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute('SELECT * FROM users')
     users = cursor.fetchall()
     conn.close()
-    return render_template('index.html', users=users)
+    return render_template('user.html', users=users)
 
-@app.route('/add_user', methods=['GET', 'POST'])
 def add_user():
     if request.method == 'POST':
         name = request.form['name']
@@ -52,10 +50,9 @@ def add_user():
         cursor.execute('INSERT INTO users (name, email) VALUES (?, ?)', (name, email))
         conn.commit()
         conn.close()
-        return redirect(url_for('index'))
+        return redirect(url_for('index_clientes_route'))
     return render_template('add_user.html')
 
-@app.route('/update_user/<int:user_id>', methods=['GET', 'POST'])
 def update_user(user_id):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -65,28 +62,16 @@ def update_user(user_id):
         cursor.execute('UPDATE users SET name = ?, email = ? WHERE pk_cliente = ?', (new_name, new_email, user_id))
         conn.commit()
         conn.close()
-        return redirect(url_for('index'))
+        return redirect(url_for('index_clientes_route'))
     cursor.execute('SELECT * FROM users WHERE pk_cliente = ?', (user_id,))
     user = cursor.fetchone()
     conn.close()
     return render_template('update_user.html', user=user)
 
-@app.route('/delete_user/<int:user_id>')
 def delete_user(user_id):
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute('DELETE FROM users WHERE pk_cliente = ?', (user_id,))
     conn.commit()
     conn.close()
-    return redirect(url_for('index'))
-
-if __name__ == '__main__':
-    # create_tables()
-    # users = [
-    #     ('John Doe', 'john.doe@email.com'),
-    #     ('Jane Doe', 'jane.doe@email.com'),
-    #     ('John Smith', 'john.smith@email.com')
-    # ]
-    #insert_users(users)
-    
-    app.run(debug=True)
+    return redirect(url_for('index_clientes_route'))
