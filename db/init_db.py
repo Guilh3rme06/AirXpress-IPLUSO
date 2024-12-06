@@ -1,6 +1,7 @@
 import logging
 from db import initialize_db, execute_query
 from seed_data import CLIENTES, AVIOES, VOOS, RESERVAS
+from src.planes import insert_avioes
 
 # Configuração de logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -16,19 +17,6 @@ def insert_clientes(clientes):
             (cliente["nome"], cliente["email"])
         )
     logging.info(f"{len(clientes)} clientes inseridos com sucesso!")
-
-
-def insert_avioes(avioes):
-    """
-    Insere aviões no banco de dados.
-    :param avioes: lista de dicionários com os dados dos aviões.
-    """
-    for aviao in avioes:
-        execute_query(
-            "INSERT INTO avioes (modelo, capacidade) VALUES (?, ?);",
-            (aviao["modelo"], aviao["capacidade"])
-        )
-    logging.info(f"{len(avioes)} aviões inseridos com sucesso!")
 
 def insert_voos(voos):
     """
