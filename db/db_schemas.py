@@ -1,8 +1,8 @@
 TABLES = {
-    "clientes": """
-        CREATE TABLE IF NOT EXISTS clientes (
+    "users": """
+        CREATE TABLE IF NOT EXISTS users (
             pk_cliente INTEGER PRIMARY KEY,
-            nome TEXT NOT NULL,
+            name TEXT NOT NULL,
             email TEXT UNIQUE NOT NULL
         );
     """,

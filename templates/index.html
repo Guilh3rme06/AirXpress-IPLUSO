@@ -26,17 +26,17 @@
         <tbody>
           {% for user in users %}
           <tr>
-            <td>{{ user['cliente'] }}</td>
+            <td>{{ user['pk_cliente'] }}</td>
             <td>{{ user['name'] }}</td>
             <td>{{ user['email'] }}</td>
             <td>
               <a
-                href="{{ url_for('update_user', user_id=user['cliente']) }}"
+                href="{{ url_for('update_user', user_id=user['pk_cliente']) }}"
                 class="btn btn-sm btn-primary"
                 >Editar</a
               >
               <a
-                href="{{ url_for('delete_user', user_id=user['cliente']) }}"
+                href="{{ url_for('delete_user', user_id=user['pk_cliente']) }}"
                 class="btn btn-sm btn-danger"
                 >Excluir</a
               >

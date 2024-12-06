@@ -1,15 +1,15 @@
 # Dados fictícios
 CLIENTES = [
-    {"nome": "João Silva", "email": "joao.silva@email.com"},
-    {"nome": "Maria Oliveira", "email": "maria.oliveira@email.com"},
-    {"nome": "José Santos", "email": "jose.santos@email.com"},
-    {"nome": "Ana Pereira", "email": "ana.pereira@email.com"},
-    {"nome": "Carlos Rodrigues", "email": "carlos.rodrigues@email.com"},
-    {"nome": "Margarida Alves", "email": "margarida.alves@email.com"},
-    {"nome": "Bruno Ferreira", "email": "bruno.ferreira@email.com"},
-    {"nome": "Cláudia Martins", "email": "claudia.martins@email.com"},
-    {"nome": "Pedro Gonçalves", "email": "pedro.goncalves@email.com"},
-    {"nome": "Beatriz Souza", "email": "beatriz.souza@email.com"}
+    {"name": "João Silva", "email": "joao.silva@email.com"},
+    {"name": "Maria Oliveira", "email": "maria.oliveira@email.com"},
+    {"name": "José Santos", "email": "jose.santos@email.com"},
+    {"name": "Ana Pereira", "email": "ana.pereira@email.com"},
+    {"name": "Carlos Rodrigues", "email": "carlos.rodrigues@email.com"},
+    {"name": "Margarida Alves", "email": "margarida.alves@email.com"},
+    {"name": "Bruno Ferreira", "email": "bruno.ferreira@email.com"},
+    {"name": "Cláudia Martins", "email": "claudia.martins@email.com"},
+    {"name": "Pedro Gonçalves", "email": "pedro.goncalves@email.com"},
+    {"name": "Beatriz Souza", "email": "beatriz.souza@email.com"}
 ]
 
 AVIOES = [

@@ -4,7 +4,7 @@ import sqlite3
 app = Flask(__name__)
 
 def get_db_connection():
-    conn = sqlite3.connect('airxpress.db')
+    conn = sqlite3.connect('db/airxpress.db')
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -62,11 +62,11 @@ def update_user(user_id):
     if request.method == 'POST':
         new_name = request.form['name']
         new_email = request.form['email']
-        cursor.execute('UPDATE users SET name = ?, email = ? WHERE cliente = ?', (new_name, new_email, user_id))
+        cursor.execute('UPDATE users SET name = ?, email = ? WHERE pk_cliente = ?', (new_name, new_email, user_id))
         conn.commit()
         conn.close()
         return redirect(url_for('index'))
-    cursor.execute('SELECT * FROM users WHERE cliente = ?', (user_id,))
+    cursor.execute('SELECT * FROM users WHERE pk_cliente = ?', (user_id,))
     user = cursor.fetchone()
     conn.close()
     return render_template('update_user.html', user=user)
@@ -75,18 +75,18 @@ def update_user(user_id):
 def delete_user(user_id):
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute('DELETE FROM users WHERE cliente = ?', (user_id,))
+    cursor.execute('DELETE FROM users WHERE pk_cliente = ?', (user_id,))
     conn.commit()
     conn.close()
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    create_tables()
-    users = [
-        ('John Doe', 'john.doe@email.com'),
-        ('Jane Doe', 'jane.doe@email.com'),
-        ('John Smith', 'john.smith@email.com')
-    ]
-    insert_users(users)
+    # create_tables()
+    # users = [
+    #     ('John Doe', 'john.doe@email.com'),
+    #     ('Jane Doe', 'jane.doe@email.com'),
+    #     ('John Smith', 'john.smith@email.com')
+    # ]
+    #insert_users(users)
     
     app.run(debug=True)
