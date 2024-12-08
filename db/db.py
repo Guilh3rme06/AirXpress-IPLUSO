@@ -18,6 +18,7 @@ class DatabaseManager:
     def __enter__(self):
         try:
             self.conn = sqlite3.connect(self.db_path)
+            self.row_factory = sqlite3.Row
             return self.conn
         except sqlite3.Error as e:
             logging.error(f"Erro ao conectar ao banco de dados: {e}")
