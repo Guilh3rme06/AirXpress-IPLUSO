@@ -8,6 +8,53 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
     />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 1rem 0;
+        text-align: center;
+      }
+      nav {
+        background-color: #444;
+        color: #fff;
+        padding: 1rem;
+        text-align: center;
+      }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+      }
+      nav ul li {
+        margin: 0 1rem;
+      }
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
+      main {
+        padding: 2rem;
+        text-align: center;
+      }
+      footer {
+        background-color: #333;
+        color: #fff;
+        padding: 1rem 0;
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+      }
+    </style>
   </head>
   <body>
     <div class="container mt-5">
@@ -27,7 +74,7 @@
           {% for user in users %}
           <tr>
             <td>{{ user['pk_cliente'] }}</td>
-            <td>{{ user['name'] }}</td>
+            <td>{{ user['nome'] }}</td>
             <td>{{ user['email'] }}</td>
             <td>
               <a

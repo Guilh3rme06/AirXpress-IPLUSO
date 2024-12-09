@@ -1,46 +1,60 @@
 # Dados fictícios
 CLIENTES = [
-    {"name": "João Silva", "email": "joao.silva@email.com"},
-    {"name": "Maria Oliveira", "email": "maria.oliveira@email.com"},
-    {"name": "José Santos", "email": "jose.santos@email.com"},
-    {"name": "Ana Pereira", "email": "ana.pereira@email.com"},
-    {"name": "Carlos Rodrigues", "email": "carlos.rodrigues@email.com"},
-    {"name": "Margarida Alves", "email": "margarida.alves@email.com"},
-    {"name": "Bruno Ferreira", "email": "bruno.ferreira@email.com"},
-    {"name": "Cláudia Martins", "email": "claudia.martins@email.com"},
-    {"name": "Pedro Gonçalves", "email": "pedro.goncalves@email.com"},
-    {"name": "Beatriz Souza", "email": "beatriz.souza@email.com"}
+    {"nome": "João Silva", "email": "joao.silva@email.com"},
+    {"nome": "Maria Oliveira", "email": "maria.oliveira@email.com"},
+    {"nome": "José Santos", "email": "jose.santos@email.com"},
+    {"nome": "Ana Pereira", "email": "ana.pereira@email.com"},
+    {"nome": "Carlos Rodrigues", "email": "carlos.rodrigues@email.com"},
+    {"nome": "Margarida Alves", "email": "margarida.alves@email.com"},
+    {"nome": "Bruno Ferreira", "email": "bruno.ferreira@email.com"},
+    {"nome": "Cláudia Martins", "email": "claudia.martins@email.com"},
+    {"nome": "Pedro Gonçalves", "email": "pedro.goncalves@email.com"},
+    {"nome": "Beatriz Souza", "email": "beatriz.souza@email.com"}
 ]
 
 AVIOES = [
-    {"modelo": "Embraer E190", "capacidade": 100},
-    {"modelo": "Boeing 737", "capacidade": 180},
-    {"modelo": "Airbus A320", "capacidade": 200},
-    {"modelo": "Boeing 777", "capacidade": 300},
-    {"modelo": "Airbus A380", "capacidade": 500}
+    {"fabricante": "Boeing", "modelo": "747", "capacidade": 416},
+    {"fabricante": "Airbus", "modelo": "A380", "capacidade": 555},
+    {"fabricante": "Embraer", "modelo": "E190", "capacidade": 114},
+    {"fabricante": "Bombardier", "modelo": "CRJ900", "capacidade": 90},
+    {"fabricante": "Boeing", "modelo": "777", "capacidade": 396},
+    {"fabricante": "Airbus", "modelo": "A320", "capacidade": 220},
+    {"fabricante": "Embraer", "modelo": "E195", "capacidade": 124},
+    {"fabricante": "Bombardier", "modelo": "CRJ700", "capacidade": 78},
+    {"fabricante": "Boeing", "modelo": "787", "capacidade": 330},
+    {"fabricante": "Airbus", "modelo": "A330", "capacidade": 290}
 ]
 
 VOOS = [
-    {"origem": "São Paulo", "destino": "Rio de Janeiro", "data_partida": "2024-12-10 14:00:00", 
-    "data_chegada": "2024-12-10 15:30:00", "fk_aviao": 1},
-    {"origem": "Lisboa", "destino": "Porto", "data_partida": "2024-12-11 09:00:00", 
-    "data_chegada": "2024-12-11 10:00:00", "fk_aviao": 2},
-    {"origem": "Nova York", "destino": "Toronto", "data_partida": "2024-12-12 08:00:00", 
-    "data_chegada": "2024-12-12 10:00:00", "fk_aviao": 3},
-    {"origem": "Tóquio", "destino": "Seul", "data_partida": "2024-12-13 06:00:00", 
-    "data_chegada": "2024-12-13 08:30:00", "fk_aviao": 4},
-    {"origem": "Paris", "destino": "Londres", "data_partida": "2024-12-14 16:00:00", 
-    "data_chegada": "2024-12-14 17:30:00", "fk_aviao": 2},
-    {"origem": "Rio de Janeiro", "destino": "Buenos Aires", "data_partida": "2024-12-15 19:00:00", 
-    "data_chegada": "2024-12-15 22:00:00", "fk_aviao": 1},
-    {"origem": "Sydney", "destino": "Auckland", "data_partida": "2024-12-16 07:00:00", 
-    "data_chegada": "2024-12-16 12:00:00", "fk_aviao": 5},
-    {"origem": "Dubai", "destino": "Doha", "data_partida": "2024-12-17 20:00:00", 
-    "data_chegada": "2024-12-17 21:30:00", "fk_aviao": 3},
-    {"origem": "Frankfurt", "destino": "Zurique", "data_partida": "2024-12-18 11:00:00", 
-    "data_chegada": "2024-12-18 12:00:00", "fk_aviao": 2},
-    {"origem": "Los Angeles", "destino": "San Francisco", "data_partida": "2024-12-19 14:00:00", 
-    "data_chegada": "2024-12-19 15:00:00", "fk_aviao": 4}
+    {"origem": "São Paulo", "destino": "Rio de Janeiro", "datahora_partida": "2024-12-10 14:00:00", 
+     "datahora_chegada": "2024-12-10 15:30:00", "status": "planejado", "fk_aviao": 1},
+    
+    {"origem": "Lisboa", "destino": "Porto", "datahora_partida": "2024-12-11 09:00:00", 
+     "datahora_chegada": "2024-12-11 10:00:00", "status": "em andamento", "fk_aviao": 2},
+    
+    {"origem": "Nova York", "destino": "Toronto", "datahora_partida": "2024-12-12 08:00:00", 
+     "datahora_chegada": "2024-12-12 10:00:00", "status": "planejado", "fk_aviao": 3},
+    
+    {"origem": "Tóquio", "destino": "Seul", "datahora_partida": "2024-12-13 06:00:00", 
+     "datahora_chegada": "2024-12-13 08:30:00", "status": "concluido", "fk_aviao": 4},
+    
+    {"origem": "Paris", "destino": "Londres", "datahora_partida": "2024-12-14 16:00:00", 
+     "datahora_chegada": "2024-12-14 17:30:00", "status": "planejado", "fk_aviao": 2},
+    
+    {"origem": "Rio de Janeiro", "destino": "Buenos Aires", "datahora_partida": "2024-12-15 19:00:00", 
+     "datahora_chegada": "2024-12-15 22:00:00", "status": "cancelado", "fk_aviao": 1},
+    
+    {"origem": "Sydney", "destino": "Auckland", "datahora_partida": "2024-12-16 07:00:00", 
+     "datahora_chegada": "2024-12-16 12:00:00", "status": "em andamento", "fk_aviao": 5},
+    
+    {"origem": "Dubai", "destino": "Doha", "datahora_partida": "2024-12-17 20:00:00", 
+     "datahora_chegada": "2024-12-17 21:30:00", "status": "concluido", "fk_aviao": 3},
+    
+    {"origem": "Frankfurt", "destino": "Zurique", "datahora_partida": "2024-12-18 11:00:00", 
+     "datahora_chegada": "2024-12-18 12:00:00", "status": "planejado", "fk_aviao": 2},
+    
+    {"origem": "Los Angeles", "destino": "San Francisco", "datahora_partida": "2024-12-19 14:00:00", 
+     "datahora_chegada": "2024-12-19 15:00:00", "status": "em andamento", "fk_aviao": 4}
 ]
 
 RESERVAS = [
