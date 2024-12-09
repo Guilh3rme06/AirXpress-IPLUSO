@@ -43,17 +43,23 @@ cd AirXpress-IPLUSO
 ```
 ### 2. Crie um ambiente virtual:
 ```bash
-python -m venv venv
-source venv/bin/activate  # No Windows, use: venv\Scripts\activate
+python -m venv .venv
+source .venv/bin/activate  # No Windows, use: .venv\Scripts\activate
 ```
 ### 3. Instale as dependências:
 ```bash
 pip install -r requirements.txt
 ```
-### 4. Execute a aplicação:
+### 4. Inicialize o banco de dados
+```bash
+python db/init_db.py
+```
+### 5. Execute a aplicação
+Após a base de dados estar configurada, execute a aplicação:
 ```bash
 python src/main.py
 ```
+
 ## 🗂️ Estrutura do Projeto
 ```plaintext
 📁 AirXpress-IPLUSO
