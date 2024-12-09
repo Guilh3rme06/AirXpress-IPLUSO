@@ -10,75 +10,75 @@
     />
     <style>
       body {
-          font-family: Arial, sans-serif;
-          margin: 0;
-          padding: 0;
-          background-color: #f4f4f4;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
       }
       header {
-          background-color: #333;
-          color: #fff;
-          padding: 1rem 0;
-          text-align: center;
+        background-color: #333;
+        color: #fff;
+        padding: 1rem 0;
+        text-align: center;
       }
       nav {
-          background-color: #444;
-          color: #fff;
-          padding: 1rem;
-          text-align: center;
+        background-color: #444;
+        color: #fff;
+        padding: 1rem;
+        text-align: center;
       }
       nav ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          justify-content: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
       }
       nav ul li {
-          margin: 0 1rem;
+        margin: 0 1rem;
       }
       nav ul li a {
-          color: #fff;
-          text-decoration: none;
+        color: #fff;
+        text-decoration: none;
       }
       main {
-          padding: 2rem;
-          text-align: center;
+        padding: 2rem;
+        text-align: center;
       }
       footer {
-          background-color: #333;
-          color: #fff;
-          padding: 1rem 0;
-          text-align: center;
-          position: fixed;
-          width: 100%;
-          bottom: 0;
+        background-color: #333;
+        color: #fff;
+        padding: 1rem 0;
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
       }
-  </style>
+    </style>
   </head>
   <body>
     <header>
       <h1>Welcome to AirXpress</h1>
-  </header>
-  <nav>
+    </header>
+    <nav>
       <ul>
-          <li><a href="{{ url_for('index_route') }}">Home</a></li>
-          <li><a href="{{ url_for('index_clientes_route') }}">Users</a></li>
+        <li><a href="{{ url_for('index_route') }}">Home</a></li>
+        <li><a href="{{ url_for('index_clientes_route') }}">Users</a></li>
       </ul>
-  </nav>
+    </nav>
     <div class="container mt-5">
       <h1 class="mb-4">Editar Usuário</h1>
 
       <!-- Formulário para editar usuário -->
       <form method="post">
         <div class="mb-3">
-          <label for="name" class="form-label">Nome</label>
+          <label for="nome" class="form-label">Nome</label>
           <input
             type="text"
             class="form-control"
-            id="name"
-            name="name"
-            value="{{ user[1] }}"
+            id="nome"
+            name="nome"
+            value="{{ user['nome'] }}"
             required
           />
         </div>
@@ -89,12 +89,16 @@
             class="form-control"
             id="email"
             name="email"
-            value="{{ user[2] }}"
+            value="{{ user['email'] }}"
             required
           />
         </div>
         <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-        <a href="{{ url_for('index_clientes_route') }}" class="btn btn-secondary">Cancelar</a>
+        <a
+          href="{{ url_for('index_clientes_route') }}"
+          class="btn btn-secondary"
+          >Cancelar</a
+        >
       </form>
     </div>
 

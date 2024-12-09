@@ -1,6 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for
-import sqlite3
-from util_clientes import *
+from flask import Flask, render_template
+from src.utils.util_clients import *
 
 app = Flask(__name__)
 
@@ -25,5 +24,4 @@ def delete_user_route(user_id):
     return delete_user(user_id)
 
 if __name__ == '__main__':
-
     app.run(debug=True)

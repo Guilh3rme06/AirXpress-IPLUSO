@@ -1,60 +1,16 @@
-import logging
-from db import initialize_db, execute_query
-from seed_data import CLIENTES, AVIOES, VOOS, RESERVAS
-#from src.planes import insert_avioes
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# Configuração de logging
+import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-
-def insert_avioes(avioes):
-    """
-    Insere aviões no banco de dados.
-    :param avioes: lista de dicionários com os dados dos aviões.
-    """
-    for aviao in avioes:
-        execute_query(
-            "INSERT INTO avioes (modelo, capacidade) VALUES (?, ?);",
-            (aviao["modelo"], aviao["capacidade"])
-        )
-    logging.info(f"{len(avioes)} aviões inseridos com sucesso!")
-
-
-def insert_clientes(clientes):
-    """
-    Insere clientes no banco de dados.
-    :param clientes: lista de dicionários com os dados dos clientes.
-    """
-    for cliente in clientes:
-        execute_query(
-            "INSERT INTO users (name, email) VALUES (?, ?);",
-            (cliente["name"], cliente["email"])
-        )
-    logging.info(f"{len(clientes)} clientes inseridos com sucesso!")
-
-def insert_voos(voos):
-    """
-    Insere voos no banco de dados.
-    :param voos: lista de dicionários com os dados dos voos.
-    """
-    for voo in voos:
-        execute_query(
-            "INSERT INTO voos (origem, destino, data_partida, data_chegada, fk_aviao) VALUES (?, ?, ?, ?, ?);",
-            (voo["origem"], voo["destino"], voo["data_partida"], voo["data_chegada"], voo["fk_aviao"])
-        )
-    logging.info(f"{len(voos)} voos inseridos com sucesso!")
-
-def insert_reservas(reservas):
-    """
-    Insere reservas no banco de dados.
-    :param reservas: lista de dicionários com os dados das reservas.
-    """
-    for reserva in reservas:
-        execute_query(
-            "INSERT INTO reservas (fk_cliente, fk_voo, data) VALUES (?, ?, ?);",
-            (reserva["fk_cliente"], reserva["fk_voo"], reserva["data"])
-        )
-    logging.info(f"{len(reservas)} reservas inseridas com sucesso!")
+from db.database import initialize_db
+from seed_data import CLIENTES, AVIOES, VOOS, RESERVAS
+from src.models.clients import insert_clientes
+from src.models.planes import insert_avioes
+from src.models.flights import insert_voos
+from src.models.bookings import insert_reservas
 
 def seed_data():
     """

@@ -1,6 +1,6 @@
 import sqlite3
 import logging
-from db_schemas import TABLES
+from db.db_schemas import TABLES
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -18,7 +18,7 @@ class DatabaseManager:
     def __enter__(self):
         try:
             self.conn = sqlite3.connect(self.db_path)
-            self.row_factory = sqlite3.Row
+            self.conn.row_factory = sqlite3.Row
             return self.conn
         except sqlite3.Error as e:
             logging.error(f"Erro ao conectar ao banco de dados: {e}")
@@ -49,7 +49,7 @@ def execute_query(query, params=None):
             logging.error(f"Erro ao executar query: {e}")
             raise
 
-def fetch(query, params=None, fetch_one=False):
+def fetch_query(query, params=None, fetch_one=False):
     """
     Executa uma query no banco de dados e retorna os resultados.
     :param query: string com a query a ser executada.
@@ -64,7 +64,13 @@ def fetch(query, params=None, fetch_one=False):
                 cursor.execute(query, params)
             else:
                 cursor.execute(query)
-            return cursor.fetchone() if fetch_one else cursor.fetchall()
+            results=  cursor.fetchone() if fetch_one else cursor.fetchall()
+            if fetch_one and results:
+                return dict(results)  # Retorna como um dicionário para fetch_one
+            elif results:
+                return [dict(row) for row in results]  # Retorna uma lista de dicionários para fetch_all
+            else:
+                return None
         except sqlite3.Error as e:
             logging.error(f"Erro ao buscar dados: {e}")
             return None
