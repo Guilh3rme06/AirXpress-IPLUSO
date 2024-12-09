@@ -54,8 +54,8 @@ cd AirXpress-IPLUSO
 ### 2. Crie um ambiente virtual:
 
 ```bash
-python -m venv venv
-source venv/bin/activate  # No Windows, use: venv\Scripts\activate
+python -m venv .venv
+source .venv/bin/activate  # No Windows, use: .venv\Scripts\activate
 ```
 
 ### 3. Instale as dependências:
@@ -64,45 +64,18 @@ source venv/bin/activate  # No Windows, use: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 4. Execute a aplicação:
+### 4. Inicialize o banco de dados
 
 ```bash
-python src/main.py
+python db/init_db.py
+```
+
+### 5. Execute a aplicação
+```bash
+python app.py
 ```
 
 ## 🗂️ Estrutura do Projeto
-
-```plaintext
-📁 AirXpress-IPLUSO
-├── 📂 assets
-│   ├── 📂 css
-│   ├── 📂 img
-│   └── 📂 js
-├── 📂 db
-│   ├── __init__.py
-│   ├── database.py
-│   ├── db_schemas.py
-│   ├── init_db.py
-│   └── seed_data.py
-├── 📂 src
-│   ├── __init__.py
-│   ├── bookings.py
-│   ├── clients.py
-│   ├── flights.py
-│   ├── main.py
-│   ├── planes.py
-│   ├── util_clients.py
-│   ├── util_flights.py
-│   └── util_bookings.py
-├── 📂 templates
-│   ├── add_user.html
-│   ├── index.html
-│   ├── update_user.html
-│   └── user.html
-├── app.py
-├── README.md
-└── requirements.txt
-```
 
 ```plaintext
 📁 AirXpress-IPLUSO/
@@ -117,13 +90,13 @@ python src/main.py
 │   └── seed_data.py          # Dados fictícios para inicialização
 ├── 📂 src/                   # Lógica principal e manipulação de dados
 │   ├── __init__.py
-│   ├── models/               # CRUD e lógica de manipulação de tabelas
+│   ├── 📂 models/               # CRUD e lógica de manipulação de tabelas
 │   │   ├── __init__.py
 │   │   ├── clients.py        # CRUD e lógica da tabela de clientes
 │   │   ├── planes.py         # CRUD e lógica da tabela de aviões
 │   │   ├── flights.py        # CRUD e lógica da tabela de voos
 │   │   └── bookings.py       # CRUD e lógica da tabela de reservas
-│   └── utils/                # Funções auxiliares, validações e transformações
+│   └── 📂 utils/                # Funções auxiliares, validações e transformações
 │       ├── __init__.py
 │       ├── util_clients.py   # Validações e verificações para clientes
 │       ├── util_planes.py    # Validações e verificações para aviões
@@ -144,7 +117,6 @@ python src/main.py
 │   │   └── booking.html
 │   └── index.html
 ├── app.py                    # Ponto de entrada do Flask
-├── config.py                 # Configurações do Flask (e.g., SECRET_KEY, DEBUG)
 ├── README.md                 # Documentação do projeto
 └── requirements.txt          # Dependências do Python
 ```
