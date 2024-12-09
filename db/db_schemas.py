@@ -1,16 +1,18 @@
 TABLES = {
-    "users": """
-        CREATE TABLE IF NOT EXISTS users (
+    "clientes": """
+        CREATE TABLE IF NOT EXISTS clientes (
             pk_cliente INTEGER PRIMARY KEY,
-            name TEXT NOT NULL,
+            nome TEXT NOT NULL,
             email TEXT UNIQUE NOT NULL
         );
     """,
     "avioes": """
         CREATE TABLE IF NOT EXISTS avioes (
             pk_aviao INTEGER PRIMARY KEY,
+            fabricante TEXT NOT NULL,
             modelo TEXT NOT NULL,
-            capacidade INTEGER NOT NULL
+            capacidade INTEGER NOT NULL,
+            UNIQUE (fabricante, modelo)
         );
     """,
     "voos": """
@@ -18,8 +20,9 @@ TABLES = {
             pk_voo INTEGER PRIMARY KEY,
             origem TEXT NOT NULL,
             destino TEXT NOT NULL,
-            data_partida TEXT NOT NULL,
-            data_chegada TEXT NOT NULL,
+            datahora_partida TEXT NOT NULL,
+            datahora_chegada TEXT NOT NULL,
+            status TEXT NOT NULL CHECK (status IN ('planejado', 'em andamento', 'concluido', 'cancelado')),
             fk_aviao INTEGER,
             FOREIGN KEY(fk_aviao) REFERENCES avioes(pk_aviao)
         );
