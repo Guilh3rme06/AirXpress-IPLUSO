@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/img/logo.png" width="200">
+  <img src="app/assets/img/logo.png" width="200">
 </div>
 
 # AirXpress
