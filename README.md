@@ -71,8 +71,9 @@ python db/init_db.py
 ```
 
 ### 5. Execute a aplicação
+
 ```bash
-python app.py
+python run.py
 ```
 
 ## 🗂️ Estrutura do Projeto
