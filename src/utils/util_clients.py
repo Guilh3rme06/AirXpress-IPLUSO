@@ -12,7 +12,7 @@ def insert_users(users):
 
 def index_clientes():
     users = fetch_query('SELECT * FROM clientes')
-    return render_template('user/user.html', users=users)
+    return render_template('user/user.html', users=users, title='Clientes | AirXpress')
 
 def add_user():
     if request.method == 'POST':
@@ -20,7 +20,7 @@ def add_user():
         email = request.form['email']
         execute_query('INSERT INTO clientes (nome, email) VALUES (?, ?)', (name, email))
         return redirect(url_for('clients.index_clientes_route'))
-    return render_template('user/add_user.html')
+    return render_template('user/add_user.html', title='Adicionar Cliente | AirXpress')
 
 def update_user(user_id):
     if request.method == 'POST':
@@ -29,7 +29,7 @@ def update_user(user_id):
         execute_query('UPDATE clientes SET nome = ?, email = ? WHERE pk_cliente = ?', (new_name, new_email, user_id))
         return redirect(url_for('clients.index_clientes_route'))
     user = fetch_query('SELECT * FROM clientes WHERE pk_cliente = ?', (user_id,), fetch_one=True)
-    return render_template('user/update_user.html', user=user)
+    return render_template('user/update_user.html', user=user, title='Atualizar Cliente | AirXpress')
 
 def delete_user(user_id):
     execute_query('DELETE FROM clientes WHERE pk_cliente = ?', (user_id,))
