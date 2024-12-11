@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Editar Usuário</title>
+    <title>Lista de Usuários</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
@@ -62,44 +62,52 @@
     </header>
     <nav>
       <ul>
-        <li><a href="{{ url_for('index_route') }}">Home</a></li>
-        <li><a href="{{ url_for('index_clientes_route') }}">Users</a></li>
+        <li><a href="{{ url_for('main.index_route') }}">Home</a></li>
+        <li>
+          <a href="{{ url_for('clients.index_clientes_route') }}">Users</a>
+        </li>
       </ul>
     </nav>
     <div class="container mt-5">
-      <h1 class="mb-4">Editar Usuário</h1>
+      <h1 class="mb-4">Lista de Usuários</h1>
 
-      <!-- Formulário para editar usuário -->
-      <form method="post">
-        <div class="mb-3">
-          <label for="nome" class="form-label">Nome</label>
-          <input
-            type="text"
-            class="form-control"
-            id="nome"
-            name="nome"
-            value="{{ user['nome'] }}"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            name="email"
-            value="{{ user['email'] }}"
-            required
-          />
-        </div>
-        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-        <a
-          href="{{ url_for('index_clientes_route') }}"
-          class="btn btn-secondary"
-          >Cancelar</a
-        >
-      </form>
+      <!-- Tabela de usuários -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <td>{{ user['pk_cliente'] }}</td>
+            <td>{{ user['nome'] }}</td>
+            <td>{{ user['email'] }}</td>
+            <td>
+              <a
+                href="{{ url_for('clients.update_user_route', user_id=user['pk_cliente']) }}"
+                class="btn btn-sm btn-primary"
+                >Editar</a
+              >
+              <a
+                href="{{ url_for('clients.delete_user_route', user_id=user['pk_cliente']) }}"
+                class="btn btn-sm btn-danger"
+                >Excluir</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <!-- Botão para adicionar novo usuário -->
+      <a href="{{ url_for('clients.add_user_route') }}" class="btn btn-success"
+        >Adicionar Novo Usuário</a
+      >
     </div>
 
     <!-- Scripts do Bootstrap -->

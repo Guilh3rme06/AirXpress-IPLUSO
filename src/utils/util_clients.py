@@ -19,7 +19,7 @@ def add_user():
         name = request.form['name']
         email = request.form['email']
         execute_query('INSERT INTO clientes (nome, email) VALUES (?, ?)', (name, email))
-        return redirect(url_for('index_clientes_route'))
+        return redirect(url_for('clients.index_clientes_route'))
     return render_template('user/add_user.html')
 
 def update_user(user_id):
@@ -27,10 +27,10 @@ def update_user(user_id):
         new_name = request.form['nome']
         new_email = request.form['email']
         execute_query('UPDATE clientes SET nome = ?, email = ? WHERE pk_cliente = ?', (new_name, new_email, user_id))
-        return redirect(url_for('index_clientes_route'))
+        return redirect(url_for('clients.index_clientes_route'))
     user = fetch_query('SELECT * FROM clientes WHERE pk_cliente = ?', (user_id,), fetch_one=True)
     return render_template('user/update_user.html', user=user)
 
 def delete_user(user_id):
     execute_query('DELETE FROM clientes WHERE pk_cliente = ?', (user_id,))
-    return redirect(url_for('index_clientes_route'))
+    return redirect(url_for('clients.index_clientes_route'))
