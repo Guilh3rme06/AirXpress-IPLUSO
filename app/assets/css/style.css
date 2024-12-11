@@ -42,6 +42,7 @@ body {
   text-decoration: underline;
 }
 .content {
+  min-height: 100vh;
   padding: 2rem;
   text-align: center;
 }
@@ -50,7 +51,6 @@ body {
   color: #f4f4f4;
   padding: 3rem 0;
   text-align: center;
-  position: fixed;
   width: 100%;
   bottom: 0;
 }
