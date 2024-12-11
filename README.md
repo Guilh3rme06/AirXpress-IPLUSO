@@ -95,3 +95,7 @@ A aplicação estará disponível em: [http://127.0.0.1:5000](http://127.0.0.1:5
 ├── run.py                 # Ponto de entrada principal da aplicação
 └── README.md              # Documentação do projeto
 ```
+
+## 🧩 Próximos Passos
+
+1. **Melhorar o Design:** Implementar um layout mais moderno e responsivo.
