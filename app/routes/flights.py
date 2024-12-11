@@ -1,15 +1,20 @@
 from flask import Blueprint, render_template, request, jsonify
-from app.services.flight_service import get_all_flights, add_flight
+from src.utils.util_flights import index_flights, add_flights, update_flights, delete_flights
 
 flights_bp = Blueprint('flights', __name__)
 
-@flights_bp.route('/flights', methods=['GET'])
-def list_flights():
-    flights = get_all_flights()
-    return render_template('flights.html', flights=flights)
+@flights_bp.route('/flights')
+def index_flights_route():
+    return index_flights()
 
-@flights_bp.route('/flights', methods=['POST'])
-def create_flight():
-    data = request.json
-    add_flight(data)
-    return jsonify({"message": "Voo criado com sucesso!"}), 201
+@flights_bp.route('/add_flights', methods=['GET', 'POST'])
+def add_flights_route():
+    return add_flights()
+
+@flights_bp.route('/update_flight/<int:voos_id>', methods=['GET', 'POST'])
+def update_flights_route(voos_id):
+    return update_flights(voos_id)
+
+@flights_bp.route('/delete_flight/<int:voos_id>')
+def delete_flights_route(voos_id):
+    return delete_flights(voos_id)

@@ -69,6 +69,8 @@ def delete_voo(pk_voo):
     execute_query("DELETE FROM voos WHERE pk_voo = ?;", (pk_voo,))
     logging.info(f"Voo com ID {pk_voo} deletado com sucesso!")
 
+
+
 def search_voos(origem=None, destino=None):
     """
     Busca voos com base na origem e/ou destino.
