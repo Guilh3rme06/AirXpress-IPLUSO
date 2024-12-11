@@ -80,44 +80,15 @@ python run.py
 
 ```plaintext
 📁 AirXpress-IPLUSO/
-├── 📂 assets/                # Recursos estáticos, como CSS, JS, imagens
-│   ├── 📂 css/
-│   ├── 📂 js/
-│   └── 📂 img/
-├── 📂 db/                    # Banco de dados e esquemas relacionados
-│   ├── __init__.py           # Arquivo para inicializar o pacote, se necessário
-│   ├── database.py           # Conexão com o banco de dados e inicialização
-│   ├── db_schemas.py         # Definição das tabelas e esquemas
-│   └── seed_data.py          # Dados fictícios para inicialização
-├── 📂 src/                   # Lógica principal e manipulação de dados
-│   ├── __init__.py
-│   ├── 📂 models/               # CRUD e lógica de manipulação de tabelas
-│   │   ├── __init__.py
-│   │   ├── clients.py        # CRUD e lógica da tabela de clientes
-│   │   ├── planes.py         # CRUD e lógica da tabela de aviões
-│   │   ├── flights.py        # CRUD e lógica da tabela de voos
-│   │   └── bookings.py       # CRUD e lógica da tabela de reservas
-│   └── 📂 utils/                # Funções auxiliares, validações e transformações
-│       ├── __init__.py
-│       ├── util_clients.py   # Validações e verificações para clientes
-│       ├── util_planes.py    # Validações e verificações para aviões
-│       ├── util_flights.py   # Validações e verificações para voos
-│       └── util_bookings.py  # Validações e verificações para reservas
-├── 📂 templates/             # Arquivos HTML para interação com Flask
-│   ├── 📂 clients/
-│   │   ├── add_user.html
-│   │   ├── update_user.html
-│   │   └── user.html
-│   ├── 📂 flights/
-│   │   ├── add_flight.html
-│   │   ├── update_flight.html
-│   │   └── flight.html
-│   ├── 📂 bookings/
-│   │   ├── add_booking.html
-│   │   ├── update_booking.html
-│   │   └── booking.html
-│   └── index.html
-├── app.py                    # Ponto de entrada do Flask
-├── README.md                 # Documentação do projeto
-└── requirements.txt          # Dependências do Python
+├── 📂 app/
+│   ├── 📂 assets/         # Recursos estáticos como CSS, JS e imagens
+│   ├── 📂 routes/         # Arquivos de rotas para organizar endpoints
+│   ├── 📂 services/       # Lógica de negócio organizada em serviços
+│   ├── 📂 templates/      # Arquivos HTML utilizados pela aplicação
+│   └── __init__.py        # Inicialização da aplicação Flask
+├── 📂 db/                 # Banco de dados e scripts de inicialização
+├── 📂 src/                # CRUD e utilitários para manipulação de dados
+├── requirements.txt       # Dependências do projeto
+├── run.py                 # Ponto de entrada principal da aplicação
+└── README.md              # Documentação do projeto
 ```
