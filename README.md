@@ -4,29 +4,33 @@
 
 # AirXpress
 
-O **AirXpess** é uma aplicação web desenvolvida em Python com o framework Flask, que permite gerenciar voos, clientes e reservas de forma prática e intuitiva. A aplicação utiliza SQLite3 como banco de dados e segue boas práticas de organização de código, tornando o projeto escalável e fácil de manter.
+O **AirXpress** é uma aplicação web desenvolvida em Python com o framework Flask, que permite gerenciar voos, clientes e reservas de forma prática e intuitiva. A aplicação utiliza SQLite3 como banco de dados e segue boas práticas de organização de código, tornando o projeto escalável e fácil de manter.
 
 ## 📋 Funcionalidades
 
 ### Gestão de Voos
+
 - **Registo de Voos:** Insira informações como origem, destino, data e capacidade do avião.
 - **Consulta de Voos:** Realize consultas dos voos disponíveis e suas informações.
 - **Atualização de Voos:** Atualize informações de voos existentes.
 - **Eliminação de Voos:** Remova voos cadastrados.
 
 ### Gestão de Clientes
+
 - **Registo de Clientes:** Insira informações como nome e e-mail.
 - **Consulta de Clientes:** Realize consultas dos clientes registados e suas informações.
 - **Atualização de Clientes:** Atualize informações de clientes registados.
 - **Eliminação de Clientes:** Remova informações de clientes registados.
 
 ### Gestão de Reservas
+
 - **Registo de Reservas:** Crie novas reservas vinculando clientes a voos.
 - **Consulta de Reservas:** Visualize informações detalhadas das reservas realizadas.
 - **Atualização de Reservas:** Modifique dados de reservas existentes.
 - **Eliminação de Reservas:** Exclua reservas indesejadas.
 
 ### Outras Funcionalidades
+
 - **Interface Web:** Interaja com a aplicação através de páginas HTML dinâmicas.
 - **Armazenamento Local:** Persistência de dados utilizando o banco de dados SQLite3.
 - **Organização Modular:** Código estruturado com rotas, serviços, templates e modelos.
