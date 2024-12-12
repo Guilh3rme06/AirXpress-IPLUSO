@@ -1,4 +1,3 @@
-import logging
 from flask import render_template, request, redirect, url_for
 from src.models.clients import *
     
