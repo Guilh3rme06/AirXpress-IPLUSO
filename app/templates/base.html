@@ -34,6 +34,9 @@
             >Users</a
           >
         </li>
+        <li class="nav__item">
+          <a class="nav__link" href="{{ url_for('flights.index_flights_route') }}">Flights</a>
+        </li>
       </ul>
     </nav>
     <main class="content">{% block content %} {% endblock %}</main>

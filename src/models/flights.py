@@ -19,6 +19,112 @@ def insert_voo(origem, destino, datahora_partida, datahora_chegada, status, fk_a
     except Exception as e:
         logging.error(f"Erro ao inserir voo: {e}")
         raise
+    logging.info(f"{len(voos)} voos inseridos com sucesso!")
+
+def list_voos():
+    """
+    Retorna todos os voos cadastrados no banco de dados.
+    :return: Lista de dicionários com os dados dos voos.
+    """
+    return fetch_query("SELECT * FROM voos;")
+
+def get_voo_by_id(pk_voo):
+    """
+    Retorna os detalhes de um voo com base no ID.
+    :param pk_voo: ID do voo.
+    :return: Dicionário com os dados do voo.
+    """
+    return fetch_query("SELECT * FROM voos WHERE pk_voo = ?;", (pk_voo,), fetch_one=True)
+
+def update_voo(pk_voo, **fields):
+    """
+    Atualiza campos de um voo com base no ID.
+    :param pk_voo: ID do voo.
+    :param fields: Dicionário com os campos a serem atualizados.
+    """
+    if not fields:
+        logging.warning("Nenhum campo foi passado para atualizar.")
+        return
+
+    columns = ", ".join([f"{key} = ?" for key in fields.keys()])
+    values = list(fields.values()) + [pk_voo]
+
+    execute_query(f"UPDATE voos SET {columns} WHERE pk_voo = ?;", values)
+    logging.info(f"Voo com ID {pk_voo} atualizado com sucesso!")
+
+def delete_voo(pk_voo):
+    """
+    Remove um voo do banco de dados com base no ID.
+    :param pk_voo: ID do voo.
+    """
+    execute_query("DELETE FROM voos WHERE pk_voo = ?;", (pk_voo,))
+    logging.info(f"Voo com ID {pk_voo} deletado com sucesso!")
+
+
+
+def search_voos(origem=None, destino=None):
+    """
+    Busca voos com base na origem e/ou destino.
+    :param origem: Local de origem (opcional).
+    :param destino: Local de destino (opcional).
+    :return: Lista de dicionários com os voos encontrados.
+    """
+    query = "SELECT * FROM voos WHERE 1=1"
+    params = []
+
+    if origem:
+        query += " AND origem = ?"
+        params.append(origem)
+
+    if destino:
+        query += " AND destino = ?"
+        params.append(destino)
+
+    return fetch_query(query, params)
+
+def update_voo_status(pk_voo, status):
+    """
+    Atualiza o status de um voo.
+    :param pk_voo: ID do voo.
+    :param status: Novo status do voo.
+    """
+    validar_status(status)
+
+    execute_query("UPDATE voos SET status = ? WHERE pk_voo = ?;", (status, pk_voo))
+    logging.info(f"Status do voo com ID {pk_voo} alterado para '{status}'.")
+
+def list_voos_by_status(status):
+    """
+    Lista todos os voos com base no status.
+    :param status: Status do voo.
+    :return: Lista de dicionários com os voos encontrados.
+    """
+    valid_status = ['planejado', 'em andamento', 'concluido', 'cancelado']
+    if status not in valid_status:
+        logging.error(f"Status inválido: {status}.")
+        raise ValueError("Status inválido.")
+
+    return fetch_query("SELECT * FROM voos WHERE status = ?;", (status,))
+
+def list_voos_by_date_range(start_date, end_date):
+    """
+    Retorna voos que ocorrem dentro de um intervalo de datas.
+    :param start_date: Data inicial (YYYY-MM-DD).
+    :param end_date: Data final (YYYY-MM-DD).
+    :return: Lista de dicionários com os voos encontrados.
+    """
+    return fetch_query(
+        "SELECT * FROM voos WHERE datahora_partida >= ? AND datahora_partida <= ?;",
+        (start_date, end_date)
+    )
+
+def count_voos_by_status():
+    """
+    Retorna a contagem de voos agrupados por status.
+    :return: Dicionário com o status como chave e a contagem como valor.
+    """
+    result = fetch_query("SELECT status, COUNT(*) as total FROM voos GROUP BY status;")
+    return {row["status"]: row["total"] for row in result}
 
 def assentos_disponiveis(pk_voo):
     """
