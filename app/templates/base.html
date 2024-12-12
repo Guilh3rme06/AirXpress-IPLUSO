@@ -19,10 +19,8 @@
     />
   </head>
   <body>
-    <header class="header">
-      <h1 class="header__title">Welcome to AirXpress</h1>
-    </header>
     <nav class="nav">
+      <img id="logo" src="{{ url_for('static', filename='img/logo.png') }}">
       <ul class="nav__list">
         <li class="nav__item">
           <a class="nav__link" href="{{ url_for('main.index_route') }}">Home</a>
