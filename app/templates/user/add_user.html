@@ -1,18 +1,16 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="container mt-5">
   <h1 class="mb-4">Adicionar Novo Usuário</h1>
 
   <!-- Formulário para adicionar usuário -->
   <form method="post">
     <div class="mb-3">
-      <label for="name" class="form-label">Nome</label>
+      <label for="nome" class="form-label">Nome</label>
       <input
         type="text"
         class="form-control"
-        id="name"
-        name="name"
+        id="nome"
+        name="nome"
         placeholder="Digite o nome"
         required
       />
