@@ -1,19 +1,19 @@
 from datetime import datetime
 import logging
 from flask import render_template, request, redirect, url_for
-from db.database import execute_query, fetch_query
-
+from src.models.flights import delete_voo, get_voo_by_id, get_voos, insert_voo, update_voo
 
 # Configuração do logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 VALID_STATUSES = {'planejado', 'em andamento', 'concluido', 'cancelado'}
 
-
 def index_flights():
-    flights = fetch_query('SELECT * FROM voos')
+    """
+    Rota para a página inicial de voos.
+    """
+    flights = get_voos()
     return render_template('flights/flights.html', flights=flights, title='Voos | AirXpress')
-
 
 def add_flights():
     if request.method == 'POST':
@@ -31,8 +31,7 @@ def add_flights():
         formatted_datahora_partida = datahora_partida.strftime('%d-%m-%Y %H:%M:%S')
         formatted_datahora_chegada = datahora_chegada.strftime('%d-%m-%Y %H:%M:%S')
         
-        execute_query('INSERT INTO voos (origem, destino, datahora_partida, datahora_chegada, status) VALUES (?, ?, ?, ?, ?)',
-                      (origem, destino, formatted_datahora_partida, formatted_datahora_chegada, status))
+        insert_voo(origem, destino, formatted_datahora_partida, formatted_datahora_chegada, status, 1)
         return redirect(url_for('flights.index_flights_route'))
     return render_template('flights/add_flight.html', title='Adicionar Voo | AirXpress')
 
@@ -52,24 +51,24 @@ def update_flights(voos_id):
         formatted_datahora_partida = datahora_partida.strftime('%d-%m-%Y %H:%M:%S')
         formatted_datahora_chegada = datahora_chegada.strftime('%d-%m-%Y %H:%M:%S')
         
-        execute_query('UPDATE voos SET origem = ?, destino = ?, datahora_partida = ?, datahora_chegada = ?, status = ? WHERE pk_voo = ?',
-                      (origem, destino, formatted_datahora_partida, formatted_datahora_chegada, status, voos_id))
+        update_voo(voos_id, origem, destino, formatted_datahora_partida, formatted_datahora_chegada, status, 1)
         return redirect(url_for('flights.index_flights_route'))
     
-    flight = fetch_query('SELECT * FROM voos WHERE pk_voo = ?', (voos_id,), fetch_one=True)
+    flight = get_voo_by_id(voos_id)
     flight['datahora_partida'] = datetime.strptime(flight['datahora_partida'], '%d-%m-%Y %H:%M:%S').strftime('%Y-%m-%dT%H:%M')
     flight['datahora_chegada'] = datetime.strptime(flight['datahora_chegada'], '%d-%m-%Y %H:%M:%S').strftime('%Y-%m-%dT%H:%M')
     return render_template('flights/update_flight.html', flight=flight, title='Atualizar Voo | AirXpress')
 
 def delete_flights(voos_id):
-    execute_query('DELETE FROM voos WHERE pk_voo = ?', (voos_id,))
+    """
+    Rota para deletar um voo.
+    """
+    delete_voo(voos_id)
     return redirect(url_for('flights.index_flights_route')) 
-
 
 def obter_status_validos():
     """
     Retorna os status válidos disponíveis para os voos.
-    
     :return: Lista de status válidos.
     """
     return list(VALID_STATUSES)

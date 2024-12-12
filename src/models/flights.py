@@ -1,27 +1,35 @@
 import logging
 from db.database import execute_query, fetch_query
-from src.utils.util_flights import validar_status
 
 def insert_voo(origem, destino, datahora_partida, datahora_chegada, status, fk_aviao):
     """
-    Insere um voo no banco de dados.
+    Insere um novo voo no banco de dados.
+    :param origem: Local de origem.
+    :param destino: Local de destino.
+    :param datahora_partida: Data e hora de partida (YYYY-MM-DD HH:MM:SS).
+    :param datahora_chegada: Data e hora de chegada (YYYY-MM-DD HH:MM:SS).
+    :param status: Status do voo.
+    :param fk_aviao: ID do avião.
     """
-    if datahora_partida >= datahora_chegada:
-        logging.error("Data de partida não pode ser posterior ou igual à data de chegada.")
-        raise ValueError("Data de partida deve ser anterior à data de chegada.")
-    
-    try:
+    execute_query(
+        "INSERT INTO voos (origem, destino, datahora_partida, datahora_chegada, status, fk_aviao) VALUES (?, ?, ?, ?, ?, ?);",
+        (origem, destino, datahora_partida, datahora_chegada, status, fk_aviao)
+    )
+    logging.info("Voo inserido com sucesso!")
+        
+def insert_voos(voos):
+    """
+    Insere múltiplos voos no banco de dados.
+    :param voos: Lista de dicionários com os dados dos voos.
+    """
+    for voo in voos:
         execute_query(
             "INSERT INTO voos (origem, destino, datahora_partida, datahora_chegada, status, fk_aviao) VALUES (?, ?, ?, ?, ?, ?);",
-            (origem, destino, datahora_partida, datahora_chegada, status, fk_aviao)
+            (voo["origem"], voo["destino"], voo["datahora_partida"], voo["datahora_chegada"], voo["status"], voo["fk_aviao"])
         )
-        logging.info("Voo inserido com sucesso!")
-    except Exception as e:
-        logging.error(f"Erro ao inserir voo: {e}")
-        raise
     logging.info(f"{len(voos)} voos inseridos com sucesso!")
 
-def list_voos():
+def get_voos():
     """
     Retorna todos os voos cadastrados no banco de dados.
     :return: Lista de dicionários com os dados dos voos.
@@ -50,6 +58,11 @@ def update_voo(pk_voo, **fields):
     values = list(fields.values()) + [pk_voo]
 
     execute_query(f"UPDATE voos SET {columns} WHERE pk_voo = ?;", values)
+    logging.info(f"Voo com ID {pk_voo} atualizado com sucesso!")
+    
+def update_voo(pk_voo, origem, destino, datahora_partida, datahora_chegada, status, fk_aviao):
+    execute_query('UPDATE voos SET origem = ?, destino = ?, datahora_partida = ?, datahora_chegada = ?, status = ?, fk_aviao = ? WHERE pk_voo = ?',
+                  (origem, destino, datahora_partida, datahora_chegada, status, fk_aviao, pk_voo))
     logging.info(f"Voo com ID {pk_voo} atualizado com sucesso!")
 
 def delete_voo(pk_voo):
@@ -88,8 +101,6 @@ def update_voo_status(pk_voo, status):
     :param pk_voo: ID do voo.
     :param status: Novo status do voo.
     """
-    validar_status(status)
-
     execute_query("UPDATE voos SET status = ? WHERE pk_voo = ?;", (status, pk_voo))
     logging.info(f"Status do voo com ID {pk_voo} alterado para '{status}'.")
 
