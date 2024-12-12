@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">Lista de Usuários</h1>
+
+  <!-- Tabela de usuários -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+        <td>{{ user['pk_cliente'] }}</td>
+        <td>{{ user['nome'] }}</td>
+        <td>{{ user['email'] }}</td>
+        <td>
+          <a
+            href="{{ url_for('clients.update_user_route', user_id=user['pk_cliente']) }}"
+            class="btn btn-sm btn-primary"
+            >Editar</a
+          >
+          <a
+            href="{{ url_for('clients.delete_user_route', user_id=user['pk_cliente']) }}"
+            class="btn btn-sm btn-danger"
+            >Excluir</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Botão para adicionar novo usuário -->
+  <a href="{{ url_for('clients.add_user_route') }}" class="btn btn-success"
+    >Adicionar Novo Usuário</a>
+</div>
+<!-- Scripts do Bootstrap -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='img/logo.png') }}"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <nav class="nav">
+      <img id="logo" src="{{ url_for('static', filename='img/logo.png') }}" />
+      <ul class="nav__list">
+        <li class="nav__item">
+          <a class="nav__link" href="{{ url_for('main.index_route') }}">Home</a>
+        </li>
+        <li class="nav__item">
+          <a
+            class="nav__link"
+            href="{{ url_for('clients.index_clientes_route') }}"
+            >Users</a
+          >
+        </li>
+        <li class="nav__item">
+          <a
+            class="nav__link"
+            href="{{ url_for('flights.index_flights_route') }}"
+            >Flights</a
+          >
+        </li>
+        <li class="nav__item">
+          <a
+            class="nav__link"
+            href="{{ url_for('bookings.index_bookings_route') }}"
+            >Bookings</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <main class="content">{% block content %} {% endblock %}</main>
+    <footer class="footer">
+      <p class="footer__content">&copy; 2024 AirXpress. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
