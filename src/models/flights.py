@@ -1,27 +1,26 @@
 import logging
 from db.database import execute_query, fetch_query
-from src.utils.util_flights import validar_status
 
 def insert_voo(origem, destino, datahora_partida, datahora_chegada, status, fk_aviao):
     """
-    Insere um voo no banco de dados.
-    :param origem: origem do voo.
-    :param destino: destino do voo.
-    :param datahora_partida: data e hora de partida do voo.
-    :param datahora_chegada: data e hora de chegada do voo.
-    :param status: status do voo.
-    :param fk_aviao: chave estrangeira do avião.
+    Insere um novo voo no banco de dados.
+    :param origem: Local de origem.
+    :param destino: Local de destino.
+    :param datahora_partida: Data e hora de partida (YYYY-MM-DD HH:MM:SS).
+    :param datahora_chegada: Data e hora de chegada (YYYY-MM-DD HH:MM:SS).
+    :param status: Status do voo.
+    :param fk_aviao: ID do avião.
     """
     execute_query(
         "INSERT INTO voos (origem, destino, datahora_partida, datahora_chegada, status, fk_aviao) VALUES (?, ?, ?, ?, ?, ?);",
         (origem, destino, datahora_partida, datahora_chegada, status, fk_aviao)
     )
     logging.info("Voo inserido com sucesso!")
-
+        
 def insert_voos(voos):
     """
-    Insere voos no banco de dados.
-    :param voos: lista de dicionários com os dados dos voos.
+    Insere múltiplos voos no banco de dados.
+    :param voos: Lista de dicionários com os dados dos voos.
     """
     for voo in voos:
         execute_query(
@@ -30,7 +29,7 @@ def insert_voos(voos):
         )
     logging.info(f"{len(voos)} voos inseridos com sucesso!")
 
-def list_voos():
+def get_voos():
     """
     Retorna todos os voos cadastrados no banco de dados.
     :return: Lista de dicionários com os dados dos voos.
@@ -60,6 +59,11 @@ def update_voo(pk_voo, **fields):
 
     execute_query(f"UPDATE voos SET {columns} WHERE pk_voo = ?;", values)
     logging.info(f"Voo com ID {pk_voo} atualizado com sucesso!")
+    
+def update_voo(pk_voo, origem, destino, datahora_partida, datahora_chegada, status, fk_aviao):
+    execute_query('UPDATE voos SET origem = ?, destino = ?, datahora_partida = ?, datahora_chegada = ?, status = ?, fk_aviao = ? WHERE pk_voo = ?',
+                  (origem, destino, datahora_partida, datahora_chegada, status, fk_aviao, pk_voo))
+    logging.info(f"Voo com ID {pk_voo} atualizado com sucesso!")
 
 def delete_voo(pk_voo):
     """
@@ -68,6 +72,8 @@ def delete_voo(pk_voo):
     """
     execute_query("DELETE FROM voos WHERE pk_voo = ?;", (pk_voo,))
     logging.info(f"Voo com ID {pk_voo} deletado com sucesso!")
+
+
 
 def search_voos(origem=None, destino=None):
     """
@@ -95,8 +101,6 @@ def update_voo_status(pk_voo, status):
     :param pk_voo: ID do voo.
     :param status: Novo status do voo.
     """
-    validar_status(status)
-
     execute_query("UPDATE voos SET status = ? WHERE pk_voo = ?;", (status, pk_voo))
     logging.info(f"Status do voo com ID {pk_voo} alterado para '{status}'.")
 
@@ -136,40 +140,24 @@ def count_voos_by_status():
 def assentos_disponiveis(pk_voo):
     """
     Retorna a quantidade de assentos disponíveis em um voo.
-    :param pk_voo: ID do voo.
-    :return: Quantidade de assentos disponíveis.
     """
-    voo = get_voo_by_id(pk_voo)
-    if not voo:
-        logging.error(f"Voo com ID {pk_voo} não encontrado.")
-        return
+    try:
+        voo = get_voo_by_id(pk_voo)
+        if not voo:
+            logging.error(f"Voo com ID {pk_voo} não encontrado.")
+            return 0
 
-    capacidade = fetch_query("SELECT capacidade FROM avioes WHERE pk_aviao = ?;", (voo["fk_aviao"],), fetch_one=True)
-    if not capacidade:
-        logging.error(f"Capacidade do avião do voo com ID {pk_voo} não encontrada.")
-        return
+        capacidade = fetch_query("SELECT capacidade FROM avioes WHERE pk_aviao = ?;", (voo["fk_aviao"],), fetch_one=True)
+        if not capacidade:
+            logging.error(f"Capacidade do avião do voo com ID {pk_voo} não encontrada.")
+            return 0
 
-    assentos_ocupados = fetch_query("SELECT COUNT(*) as total FROM passagens WHERE fk_voo = ?;", (pk_voo,), fetch_one=True)
-    if not assentos_ocupados:
-        logging.error(f"Erro ao buscar assentos ocupados do voo com ID {pk_voo}.")
-        return
-    
-    return capacidade["capacidade"] - assentos_ocupados["total"]
+        assentos_ocupados = fetch_query("SELECT COUNT(*) as total FROM passagens WHERE fk_voo = ?;", (pk_voo,), fetch_one=True)
+        if not assentos_ocupados:
+            logging.error(f"Erro ao buscar assentos ocupados do voo com ID {pk_voo}.")
+            return 0
 
-def total_assentos(pk_voo):
-    """
-    Retorna a quantidade total de assentos em um voo.
-    :param pk_voo: ID do voo.
-    :return: Quantidade total de assentos.
-    """
-    voo = get_voo_by_id(pk_voo)
-    if not voo:
-        logging.error(f"Voo com ID {pk_voo} não encontrado.")
-        return
-
-    capacidade = fetch_query("SELECT capacidade FROM avioes WHERE pk_aviao = ?;", (voo["fk_aviao"],), fetch_one=True)
-    if not capacidade:
-        logging.error(f"Capacidade do avião do voo com ID {pk_voo} não encontrada.")
-        return
-    
-    return capacidade["capacidade"]
+        return capacidade["capacidade"] - assentos_ocupados["total"]
+    except Exception as e:
+        logging.error(f"Erro ao calcular assentos disponíveis: {e}")
+        return 0

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Adicionar Novo Voo</h1>
+
+    <!-- Formulário para adicionar voo -->
+    <form method="post">
+        <div class="mb-3"></div>
+            <label for="origem" class="form-label">Origem</label>
+            <input
+                type="text"
+                class="form-control"
+                id="origem"
+                name="origem"
+                placeholder="Digite a origem"
+                required
+            />
+        </div>
+        <div class="mb-3">
+            <label for="destino" class="form-label">Destino</label>
+            <input
+                type="text"
+                class="form-control"
+                id="destino"
+                name="destino"
+                placeholder="Digite o destino"
+                required
+            />
+        </div>
+        <div class="mb-3">
+            <label for="datahora_partida" class="form-label">Data e Hora de Partida</label>
+            <input
+                type="datetime-local"
+                class="form-control"
+                id="datahora_partida"
+                name="datahora_partida"
+                required
+            />
+        </div>
+        <div class="mb-3">
+            <label for="datahora_chegada" class="form-label">Data e Hora de Chegada</label>
+            <input
+                type="datetime-local"
+                class="form-control"
+                id="datahora_chegada"
+                name="datahora_chegada"
+                required
+            />
+        </div>
+        <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-control" id="status" name="status" required>
+                <option value="planejado">Planejado</option>
+                <option value="em andamento">Em Andamento</option>
+                <option value="concluido">Concluído</option>
+                <option value="cancelado">Cancelado</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a
+            href="{{ url_for('flights.index_flights_route') }}"
+            class="btn btn-secondary"
+            >Cancelar</a
+        >
+    </form>
+</div>
+
+<!-- Scripts do Bootstrap -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

@@ -1,10 +1,11 @@
 <div align="center">
+  <img src="app/assets/img/logo.png" width="200">
   <img src="static/logo.png" width="200">
 </div>
 
 # AirXpress
 
-O AirXpess é um projeto desenvolvido em Python, que permite gerenciar voos, clientes e reservas de forma prática e intuitiva. A aplicação utiliza SQLite3 como banco de dados.
+O **AirXpress** é uma aplicação web desenvolvida em Python com o framework Flask, que permite gerenciar voos, clientes e reservas de forma prática e intuitiva. A aplicação utiliza SQLite3 como banco de dados e segue boas práticas de organização de código, tornando o projeto escalável e fácil de manter.
 
 ## 📋 Funcionalidades
 
@@ -24,19 +25,24 @@ O AirXpess é um projeto desenvolvido em Python, que permite gerenciar voos, cli
 
 ### Gestão de Reservas
 
-- **Registo de Reservas:** Insira informações como origem, destino, data e capacidade do avião.
-- **Consulta de Reservas:** Realize consultas dos voos disponíveis e suas informações.
-- **Atualização de Reservas:** Atualize informações de voos existentes.
-- **Eliminação de Reservas:** Remova voos cadastrados.
+- **Registo de Reservas:** Crie novas reservas vinculando clientes a voos.
+- **Consulta de Reservas:** Visualize informações detalhadas das reservas realizadas.
+- **Atualização de Reservas:** Modifique dados de reservas existentes.
+- **Eliminação de Reservas:** Exclua reservas indesejadas.
 
-###
+### Outras Funcionalidades
 
-- **Armazenamento Local:** Persistência de dados usando o banco de dados SQLite.
+- **Interface Web:** Interaja com a aplicação através de páginas HTML dinâmicas.
+- **Armazenamento Local:** Persistência de dados utilizando o banco de dados SQLite3.
+- **Organização Modular:** Código estruturado com rotas, serviços, templates e modelos.
 
 ## 🛠️ Tecnologias Utilizadas
 
-- Python 🐍
-- SQLite3 (banco de dados local) 📂
+- **Python** 🐍 — Linguagem de programação principal.
+- **Flask** 🌐 — Framework web para criação de aplicações escaláveis.
+- **SQLite3** 📂 — Banco de dados relacional local.
+- **HTML5 + CSS3** 🎨 — Templates estilizados para a interface da aplicação.
+<!--- **JavaScript** ⚡ — Scripts para interatividade e funcionalidades adicionais no front-end. -->
 
 ## ⚙️ Como Executar o Projeto
 
@@ -71,52 +77,30 @@ python db/init_db.py
 ```
 
 ### 5. Execute a aplicação
+
 ```bash
-python app.py
+python run.py
 ```
+
+A aplicação estará disponível em: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 ## 🗂️ Estrutura do Projeto
 
 ```plaintext
 📁 AirXpress-IPLUSO/
-├── 📂 assets/                # Recursos estáticos, como CSS, JS, imagens
-│   ├── 📂 css/
-│   ├── 📂 js/
-│   └── 📂 img/
-├── 📂 db/                    # Banco de dados e esquemas relacionados
-│   ├── __init__.py           # Arquivo para inicializar o pacote, se necessário
-│   ├── database.py           # Conexão com o banco de dados e inicialização
-│   ├── db_schemas.py         # Definição das tabelas e esquemas
-│   └── seed_data.py          # Dados fictícios para inicialização
-├── 📂 src/                   # Lógica principal e manipulação de dados
-│   ├── __init__.py
-│   ├── 📂 models/               # CRUD e lógica de manipulação de tabelas
-│   │   ├── __init__.py
-│   │   ├── clients.py        # CRUD e lógica da tabela de clientes
-│   │   ├── planes.py         # CRUD e lógica da tabela de aviões
-│   │   ├── flights.py        # CRUD e lógica da tabela de voos
-│   │   └── bookings.py       # CRUD e lógica da tabela de reservas
-│   └── 📂 utils/                # Funções auxiliares, validações e transformações
-│       ├── __init__.py
-│       ├── util_clients.py   # Validações e verificações para clientes
-│       ├── util_planes.py    # Validações e verificações para aviões
-│       ├── util_flights.py   # Validações e verificações para voos
-│       └── util_bookings.py  # Validações e verificações para reservas
-├── 📂 templates/             # Arquivos HTML para interação com Flask
-│   ├── 📂 clients/
-│   │   ├── add_user.html
-│   │   ├── update_user.html
-│   │   └── user.html
-│   ├── 📂 flights/
-│   │   ├── add_flight.html
-│   │   ├── update_flight.html
-│   │   └── flight.html
-│   ├── 📂 bookings/
-│   │   ├── add_booking.html
-│   │   ├── update_booking.html
-│   │   └── booking.html
-│   └── index.html
-├── app.py                    # Ponto de entrada do Flask
-├── README.md                 # Documentação do projeto
-└── requirements.txt          # Dependências do Python
+├── 📂 app/
+│   ├── 📂 assets/         # Recursos estáticos como CSS, JS e imagens
+│   ├── 📂 routes/         # Arquivos de rotas para organizar endpoints
+│   ├── 📂 services/       # Lógica de negócio organizada em serviços
+│   ├── 📂 templates/      # Arquivos HTML utilizados pela aplicação
+│   └── __init__.py        # Inicialização da aplicação Flask
+├── 📂 db/                 # Banco de dados e scripts de inicialização
+├── 📂 src/                # CRUD e utilitários para manipulação de dados
+├── requirements.txt       # Dependências do projeto
+├── run.py                 # Ponto de entrada principal da aplicação
+└── README.md              # Documentação do projeto
 ```
+
+## 🧩 Próximos Passos
+
+1. **Melhorar o Design:** Implementar um layout mais moderno e responsivo.

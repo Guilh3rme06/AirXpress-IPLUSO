@@ -26,35 +26,35 @@ AVIOES = [
 ]
 
 VOOS = [
-    {"origem": "São Paulo", "destino": "Rio de Janeiro", "datahora_partida": "2024-12-10 14:00:00", 
-     "datahora_chegada": "2024-12-10 15:30:00", "status": "planejado", "fk_aviao": 1},
+    {"origem": "São Paulo", "destino": "Rio de Janeiro", "datahora_partida": "10-12-2024 14:00:00", 
+     "datahora_chegada": "10-12-2024 15:30:00", "status": "planejado", "fk_aviao": 1},
     
-    {"origem": "Lisboa", "destino": "Porto", "datahora_partida": "2024-12-11 09:00:00", 
-     "datahora_chegada": "2024-12-11 10:00:00", "status": "em andamento", "fk_aviao": 2},
+    {"origem": "Lisboa", "destino": "Porto", "datahora_partida": "11-12-2024 09:00:00", 
+     "datahora_chegada": "11-12-2024 10:00:00", "status": "em andamento", "fk_aviao": 2},
     
-    {"origem": "Nova York", "destino": "Toronto", "datahora_partida": "2024-12-12 08:00:00", 
-     "datahora_chegada": "2024-12-12 10:00:00", "status": "planejado", "fk_aviao": 3},
+    {"origem": "Nova York", "destino": "Toronto", "datahora_partida": "12-12-2024 08:00:00", 
+     "datahora_chegada": "12-12-2024 10:00:00", "status": "planejado", "fk_aviao": 3},
     
-    {"origem": "Tóquio", "destino": "Seul", "datahora_partida": "2024-12-13 06:00:00", 
-     "datahora_chegada": "2024-12-13 08:30:00", "status": "concluido", "fk_aviao": 4},
+    {"origem": "Tóquio", "destino": "Seul", "datahora_partida": "13-12-2024 06:00:00", 
+     "datahora_chegada": "13-12-2024 08:30:00", "status": "concluido", "fk_aviao": 4},
     
-    {"origem": "Paris", "destino": "Londres", "datahora_partida": "2024-12-14 16:00:00", 
-     "datahora_chegada": "2024-12-14 17:30:00", "status": "planejado", "fk_aviao": 2},
+    {"origem": "Paris", "destino": "Londres", "datahora_partida": "14-12-2024 16:00:00", 
+     "datahora_chegada": "14-12-2024 17:30:00", "status": "planejado", "fk_aviao": 2},
     
-    {"origem": "Rio de Janeiro", "destino": "Buenos Aires", "datahora_partida": "2024-12-15 19:00:00", 
-     "datahora_chegada": "2024-12-15 22:00:00", "status": "cancelado", "fk_aviao": 1},
+    {"origem": "Rio de Janeiro", "destino": "Buenos Aires", "datahora_partida": "15-12-2024 19:00:00", 
+     "datahora_chegada": "15-12-2024 22:00:00", "status": "cancelado", "fk_aviao": 1},
     
-    {"origem": "Sydney", "destino": "Auckland", "datahora_partida": "2024-12-16 07:00:00", 
-     "datahora_chegada": "2024-12-16 12:00:00", "status": "em andamento", "fk_aviao": 5},
+    {"origem": "Sydney", "destino": "Auckland", "datahora_partida": "16-12-2024 07:00:00", 
+     "datahora_chegada": "16-12-2024 12:00:00", "status": "em andamento", "fk_aviao": 5},
     
-    {"origem": "Dubai", "destino": "Doha", "datahora_partida": "2024-12-17 20:00:00", 
-     "datahora_chegada": "2024-12-17 21:30:00", "status": "concluido", "fk_aviao": 3},
+    {"origem": "Dubai", "destino": "Doha", "datahora_partida": "17-12-2024 20:00:00", 
+     "datahora_chegada": "17-12-2024 21:30:00", "status": "concluido", "fk_aviao": 3},
     
-    {"origem": "Frankfurt", "destino": "Zurique", "datahora_partida": "2024-12-18 11:00:00", 
-     "datahora_chegada": "2024-12-18 12:00:00", "status": "planejado", "fk_aviao": 2},
+    {"origem": "Frankfurt", "destino": "Zurique", "datahora_partida": "18-12-2024 11:00:00", 
+     "datahora_chegada": "18-12-2024 12:00:00", "status": "planejado", "fk_aviao": 2},
     
-    {"origem": "Los Angeles", "destino": "San Francisco", "datahora_partida": "2024-12-19 14:00:00", 
-     "datahora_chegada": "2024-12-19 15:00:00", "status": "em andamento", "fk_aviao": 4}
+    {"origem": "Los Angeles", "destino": "San Francisco", "datahora_partida": "19-12-2024 14:00:00", 
+     "datahora_chegada": "19-12-2024 15:00:00", "status": "em andamento", "fk_aviao": 4}
 ]
 
 RESERVAS = [
