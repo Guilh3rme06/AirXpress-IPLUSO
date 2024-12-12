@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{ url_for('static', filename='logo.png') }}" />
     <title>Lista de Usuários</title>
     <link
       rel="stylesheet"
@@ -57,13 +58,14 @@
     </style>
   </head>
   <body>
-    <header>
-      <h1>Welcome to AirXpress</h1>
+  <header>
+      <h1>AirXpress - Usuários</h1>
     </header>
     <nav>
       <ul>
         <li><a href="{{ url_for('index_route') }}">Home</a></li>
         <li><a href="{{ url_for('index_clientes_route') }}">Users</a></li>
+        <li><a href="{{ url_for('index_reservas_route') }}">Bookings</a></li>
       </ul>
     </nav>
     <div class="container mt-5">
