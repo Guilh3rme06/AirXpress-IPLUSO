@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{ url_for('static', filename='logo.png') }}" />
+    <title>Lista de Usuários</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 1rem 0;
+        text-align: center;
+      }
+      nav {
+        background-color: #444;
+        color: #fff;
+        padding: 1rem;
+        text-align: center;
+      }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+      }
+      nav ul li {
+        margin: 0 1rem;
+      }
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
+      main {
+        padding: 2rem;
+        text-align: center;
+      }
+      footer {
+        background-color: #333;
+        color: #fff;
+        padding: 1rem 0;
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+  <header>
+      <h1>AirXpress - Reservas</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('index_route') }}">Home</a></li>
+        <li><a href="{{ url_for('index_clientes_route') }}">Users</a></li>
+        <li><a href="{{ url_for('index_reservas_route') }}">Bookings</a></li>
+      </ul>
+    </nav>
+    <div class="container mt-5">
+      <h1 class="mb-4">Lista de Reservas</h1>
+
+      <!-- Tabela de usuários -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>ID Cliente</th>
+            <th>ID Voo</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for booking in bookings %}
+          <tr>
+            <td>{{ booking['pk_reserva'] }}</td>
+            <td>{{ booking['fk_cliente'] }}</td>
+            <td>{{ booking['fk_voo'] }}</td>
+            <td>{{ booking['data'] }}</td>
+            <td>
+              <a
+                href="{{ url_for('update_booking_route', booking_id=booking['pk_reserva']) }}"
+                class="btn btn-sm btn-primary"
+                >Editar</a
+              >
+              <a
+                href="{{ url_for('delete_booking_route', booking_id=booking['pk_reserva']) }}"
+                class="btn btn-sm btn-danger"
+                >Excluir</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <!-- Botão para adicionar nova reserva -->
+      <a href="{{ url_for('add_booking_route') }}" class="btn btn-success"
+        >Adicionar Nova Reserva</a
+      >
+    </div>
+
+    <!-- Scripts do Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
