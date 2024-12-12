@@ -2,14 +2,6 @@ import logging
 
 from db.database import execute_query, fetch_query
 
-# CREATE TABLE IF NOT EXISTS avioes (
-#     pk_aviao INTEGER PRIMARY KEY,
-#     fabricante TEXT NOT NULL,
-#     modelo TEXT NOT NULL,
-#     capacidade INTEGER NOT NULL,
-#     UNIQUE (fabricante, modelo)
-# );
-
 def insert_aviao(fabricante, modelo, capacidade):
     """
     Insere um avião no banco de dados.
