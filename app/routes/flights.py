@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint
 from src.utils.util_flights import index_flights, add_flights, update_flights, delete_flights
 
 flights_bp = Blueprint('flights', __name__)
@@ -7,7 +7,7 @@ flights_bp = Blueprint('flights', __name__)
 def index_flights_route():
     return index_flights()
 
-@flights_bp.route('/add_flights', methods=['GET', 'POST'])
+@flights_bp.route('/add_flight', methods=['GET', 'POST'])
 def add_flights_route():
     return add_flights()
 
