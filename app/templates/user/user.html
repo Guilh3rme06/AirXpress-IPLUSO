@@ -1,6 +1,5 @@
-{% extends 'base.html' %}
-{% block content %}
-<div class="container mt-5">
+{% extends 'base.html' %} {% block content %}
+<div>
   <h1 class="mb-4">Lista de Usuários</h1>
 
   <!-- Tabela de usuários -->
@@ -38,7 +37,8 @@
 
   <!-- Botão para adicionar novo usuário -->
   <a href="{{ url_for('clients.add_user_route') }}" class="btn btn-success"
-    >Adicionar Novo Usuário</a>
+    >Adicionar Novo Usuário</a
+  >
 </div>
 <!-- Scripts do Bootstrap -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
