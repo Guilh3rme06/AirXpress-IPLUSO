@@ -3,7 +3,7 @@ from src.utils.util_clients import index_clientes, add_user, update_user, delete
 
 clients_bp = Blueprint('clients', __name__, template_folder='templates')
 
-@clients_bp.route('/clientes')
+@clients_bp.route('/')
 def index_clientes_route():
     return index_clientes()
 

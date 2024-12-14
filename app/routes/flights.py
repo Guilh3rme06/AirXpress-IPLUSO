@@ -3,7 +3,7 @@ from src.utils.util_flights import index_flights, add_flights, update_flights, d
 
 flights_bp = Blueprint('flights', __name__)
 
-@flights_bp.route('/flights')
+@flights_bp.route('/')
 def index_flights_route():
     return index_flights()
 
