@@ -115,6 +115,14 @@ body {
   text-decoration: underline;
 }
 
+.index__section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 1rem;
+}
+
 .form {
   display: flex;
   flex-direction: column;
