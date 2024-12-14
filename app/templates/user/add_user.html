@@ -1,40 +1,35 @@
 {% extends 'base.html' %} {% block content %}
-<div class="container mt-5">
-  <h1 class="mb-4">Adicionar Novo Usuário</h1>
-
-  <!-- Formulário para adicionar usuário -->
-  <form method="post">
-    <div class="mb-3">
-      <label for="nome" class="form-label">Nome</label>
-      <input
-        type="text"
-        class="form-control"
-        id="nome"
-        name="nome"
-        placeholder="Digite o nome"
-        required
-      />
-    </div>
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input
-        type="email"
-        class="form-control"
-        id="email"
-        name="email"
-        placeholder="Digite o email"
-        required
-      />
-    </div>
+<h2>Adicionar Novo Usuário</h2>
+<form class="form" method="post">
+  <fieldset class="form__group">
+    <label for="nome" class="form-label">Nome</label>
+    <input
+      type="text"
+      class="form-control"
+      id="nome"
+      name="nome"
+      placeholder="Digite o nome"
+      required
+    />
+  </fieldset>
+  <fieldset class="form__group">
+    <label for="email" class="form-label">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      placeholder="Digite o email"
+      required
+    />
+  </fieldset>
+  <fieldset class="form__group form__actions">
     <button type="submit" class="btn btn-success">Salvar</button>
     <a
       href="{{ url_for('clients.index_clientes_route') }}"
       class="btn btn-secondary"
       >Cancelar</a
     >
-  </form>
-</div>
-
-<!-- Scripts do Bootstrap -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  </fieldset>
+</form>
 {% endblock %}

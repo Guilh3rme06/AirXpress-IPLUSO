@@ -1,73 +1,70 @@
-{% extends 'base.html' %}
-
-{% block content %}
-<div class="container mt-5">
-    <h1 class="mb-4">Editar Voo</h1>
-
-    <!-- Formulário para editar voo -->
-    <form method="post">
-        <div class="mb-3">
-            <label for="origem" class="form-label">Origem</label>
-            <input
-                type="text"
-                class="form-control"
-                id="origem"
-                name="origem"
-                value="{{ flight['origem'] }}"
-                required
-            />
-        </div>
-        <div class="mb-3">
-            <label for="destino" class="form-label">Destino</label>
-            <input
-                type="text"
-                class="form-control"
-                id="destino"
-                name="destino"
-                value="{{ flight['destino'] }}"
-                required
-            />
-        </div>
-        <div class="mb-3">
-            <label for="datahora_partida" class="form-label">Data e Hora de Partida</label>
-            <input
-                type="datetime-local"
-                class="form-control"
-                id="datahora_partida"
-                name="datahora_partida"
-                value="{{ flight['datahora_partida'] }}"
-                required
-            />
-        </div>
-        <div class="mb-3">
-            <label for="datahora_chegada" class="form-label">Data e Hora de Chegada</label>
-            <input
-                type="datetime-local"
-                class="form-control"
-                id="datahora_chegada"
-                name="datahora_chegada"
-                value="{{ flight['datahora_chegada'] }}"
-                required
-            />
-        </div>
-        <div class="mb-3">
-            <label for="status" class="form-label">Status</label>
-            <select class="form-select" id="status" name="status" required>
-                <option value="planejado" {% if flight['status'] == 'planejado' %}selected{% endif %}>Planejado</option>
-                <option value="em andamento" {% if flight['status'] == 'em andamento' %}selected{% endif %}>Em Andamento</option>
-                <option value="concluido" {% if flight['status'] == 'concluido' %}selected{% endif %}>Concluído</option>
-                <option value="cancelado" {% if flight['status'] == 'cancelado' %}selected{% endif %}>Cancelado</option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-        <a
-            href="{{ url_for('flights.index_flights_route') }}"
-            class="btn btn-secondary"
-            >Cancelar</a
-        >
-    </form>
-</div>
-
-<!-- Scripts do Bootstrap -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+{% extends 'base.html' %} {% block content %}
+<h2>Editar Voo</h2>
+<form class="form" method="post">
+  <fieldset class="form__group">
+    <label for="origem" class="form-label">Origem</label>
+    <input
+      type="text"
+      class="form-control"
+      id="origem"
+      name="origem"
+      value="{{ flight['origem'] }}"
+      required
+    />
+  </fieldset>
+  <fieldset class="form__group">
+    <label for="destino" class="form-label">Destino</label>
+    <input
+      type="text"
+      class="form-control"
+      id="destino"
+      name="destino"
+      value="{{ flight['destino'] }}"
+      required
+    />
+  </fieldset>
+  <fieldset class="form__group">
+    <label for="datahora_partida" class="form-label"
+      >Data e Hora de Partida</label
+    >
+    <input
+      type="datetime-local"
+      class="form-control"
+      id="datahora_partida"
+      name="datahora_partida"
+      value="{{ flight['datahora_partida'] }}"
+      required
+    />
+  </fieldset>
+  <fieldset class="form__group">
+    <label for="datahora_chegada" class="form-label"
+      >Data e Hora de Chegada</label
+    >
+    <input
+      type="datetime-local"
+      class="form-control"
+      id="datahora_chegada"
+      name="datahora_chegada"
+      value="{{ flight['datahora_chegada'] }}"
+      required
+    />
+  </fieldset>
+  <fieldset class="form__group">
+    <label for="status" class="form-label">Status</label>
+    <select class="form-select" id="status" name="status" required>
+      <option value="planejado" {% if flight['status'] == 'planejado' %}selected{% endif %}>Planejado</option>
+      <option value="em andamento" {% if flight['status'] == 'em andamento' %}selected{% endif %}>Em Andamento</option>
+      <option value="concluido" {% if flight['status'] == 'concluido' %}selected{% endif %}>Concluído</option>
+      <option value="cancelado" {% if flight['status'] == 'cancelado' %}selected{% endif %}>Cancelado</option>
+    </select>
+  </fieldset>
+  <fieldset class="form__group form__actions">
+    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+    <a
+      href="{{ url_for('flights.index_flights_route') }}"
+      class="btn btn-secondary"
+      >Cancelar</a
+    >
+  </fieldset>
+</form>
 {% endblock %}

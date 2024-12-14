@@ -1,52 +1,43 @@
 {% extends 'base.html' %} {% block content %}
-<div>
-  <h1 class="mb-4">Lista de Voos</h1>
-
-  <!-- Tabela de usuários -->
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Origem</th>
-        <th>Destino</th>
-        <th>Data Partida</th>
-        <th>Data Chegada</th>
-        <th>Status</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for flight in flights %}
-      <tr>
-        <td>{{ flight['pk_voo'] }}</td>
-        <td>{{ flight['origem'] }}</td>
-        <td>{{ flight['destino'] }}</td>
-        <td>{{ flight['datahora_partida'] }}</td>
-        <td>{{ flight['datahora_chegada'] }}</td>
-        <td>{{flight['status']}}</td>
-        <td>
-          <a
-            href="{{ url_for('flights.update_flights_route', voos_id=flight['pk_voo']) }}"
-            class="btn btn-sm btn-primary"
-            >Editar</a
-          >
-          <a
-            href="{{ url_for('flights.delete_flights_route', voos_id=flight['pk_voo']) }}"
-            class="btn btn-sm btn-danger"
-            >Excluir</a
-          >
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-  <!-- Botão para adicionar novo usuário -->
-  <a href="{{ url_for('flights.add_flights_route') }}" class="btn btn-success"
-    >Adicionar Novo Voo</a
-  >
-</div>
-<!-- Scripts do Bootstrap -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
+<h2>Lista de Voos</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Origem</th>
+      <th>Destino</th>
+      <th>Data Partida</th>
+      <th>Data Chegada</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for flight in flights %}
+    <tr>
+      <td>{{ flight['pk_voo'] }}</td>
+      <td>{{ flight['origem'] }}</td>
+      <td>{{ flight['destino'] }}</td>
+      <td>{{ flight['datahora_partida'] }}</td>
+      <td>{{ flight['datahora_chegada'] }}</td>
+      <td>{{flight['status']}}</td>
+      <td>
+        <a
+          href="{{ url_for('flights.update_flights_route', voos_id=flight['pk_voo']) }}"
+          class="btn btn-sm btn-primary"
+          >Editar</a
+        >
+        <a
+          href="{{ url_for('flights.delete_flights_route', voos_id=flight['pk_voo']) }}"
+          class="btn btn-sm btn-danger"
+          >Excluir</a
+        >
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a href="{{ url_for('flights.add_flights_route') }}" class="btn btn-success"
+  >Adicionar Novo Voo</a
+>
 {% endblock %}
