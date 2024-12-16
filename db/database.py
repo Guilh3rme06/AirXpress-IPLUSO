@@ -1,7 +1,7 @@
 import sqlite3
 import logging
 from db.db_schemas import TABLES
-from src.utils.utils import trimmer
+from src.utils import trimmer
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
