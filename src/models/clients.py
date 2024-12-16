@@ -9,7 +9,8 @@ def insert_cliente(nome, email):
     """
     execute_query(
         "INSERT INTO clientes (nome, email) VALUES (?, ?);",
-        (nome, email)
+        (nome, email),
+        True
     )
     logging.info("Cliente inserido com sucesso!")
     
@@ -21,7 +22,8 @@ def insert_clientes(clientes):
     for cliente in clientes:
         execute_query(
             "INSERT INTO clientes (nome, email) VALUES (?, ?);",
-            (cliente["nome"], cliente["email"])
+            (cliente["nome"], cliente["email"]),
+            True
         )
     logging.info(f"{len(clientes)} clientes inseridos com sucesso!")
 
@@ -39,7 +41,10 @@ def update_cliente(nome, email, user_id):
     :param email: novo email do cliente.
     :param user_id: id do cliente.
     """
-    execute_query('UPDATE clientes SET nome = ?, email = ? WHERE pk_cliente = ?', (nome, email, user_id))
+    execute_query(
+        'UPDATE clientes SET nome = ?, email = ? WHERE pk_cliente = ?',
+        (nome, email, user_id),
+        True)
 
 def get_cliente(user_id):
     """
@@ -54,4 +59,4 @@ def delete_cliente(user_id):
     Deleta um cliente do banco de dados.
     :param user_id: id do cliente.
     """
-    execute_query('DELETE FROM clientes WHERE pk_cliente = ?', (user_id,))
+    execute_query('DELETE FROM clientes WHERE pk_cliente = ?', (user_id,), True)

@@ -37,8 +37,8 @@ def add_flights():
 
 def update_flights(voos_id):
     if request.method == 'POST':
-        origem = request.form['origem']
-        destino = request.form['destino']
+        origem = request.form['origem'].strip()
+        destino = request.form['destino'].strip()
         datahora_partida_str = request.form['datahora_partida']
         datahora_chegada_str = request.form['datahora_chegada']
         status = request.form['status']

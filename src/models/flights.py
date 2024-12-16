@@ -16,7 +16,7 @@ def insert_voo(origem, destino, datahora_partida, datahora_chegada, status, fk_a
         (origem, destino, datahora_partida, datahora_chegada, status, fk_aviao)
     )
     logging.info("Voo inserido com sucesso!")
-        
+
 def insert_voos(voos):
     """
     Insere múltiplos voos no banco de dados.
@@ -59,7 +59,7 @@ def update_voo(pk_voo, **fields):
 
     execute_query(f"UPDATE voos SET {columns} WHERE pk_voo = ?;", values)
     logging.info(f"Voo com ID {pk_voo} atualizado com sucesso!")
-    
+
 def update_voo(pk_voo, origem, destino, datahora_partida, datahora_chegada, status, fk_aviao):
     execute_query('UPDATE voos SET origem = ?, destino = ?, datahora_partida = ?, datahora_chegada = ?, status = ?, fk_aviao = ? WHERE pk_voo = ?',
                   (origem, destino, datahora_partida, datahora_chegada, status, fk_aviao, pk_voo))
@@ -72,8 +72,6 @@ def delete_voo(pk_voo):
     """
     execute_query("DELETE FROM voos WHERE pk_voo = ?;", (pk_voo,))
     logging.info(f"Voo com ID {pk_voo} deletado com sucesso!")
-
-
 
 def search_voos(origem=None, destino=None):
     """

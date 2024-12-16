@@ -1,6 +1,7 @@
 import sqlite3
 import logging
 from db.db_schemas import TABLES
+from src.utils.utils import trimmer
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -28,7 +29,7 @@ class DatabaseManager:
         if self.conn:
             self.conn.close()
 
-def execute_query(query, params=None):
+def execute_query(query, params=None, trim=False):
     """
     Executa uma query no banco de dados.
     :param query: string com a query a ser executada.
@@ -39,6 +40,8 @@ def execute_query(query, params=None):
         try:
             cursor = conn.cursor()
             if params:
+                if trim:
+                    params = trimmer(params)
                 cursor.execute(query, params)
             else:
                 cursor.execute(query)
