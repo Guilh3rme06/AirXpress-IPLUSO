@@ -1,51 +1,46 @@
 {% extends 'base.html' %} {% block content %}
-<div class="container mt-5">
-  <h1 class="mb-4">Atualizar Reserva</h1>
-
-  <!-- Formulário para atualizar reserva -->
-  <form method="post">
-    <div class="mb-3">
-      <label for="fk_cliente" class="form-label">Cliente</label>
-      <input
-        type="number"
-        class="form-control"
-        id="fk_cliente"
-        name="fk_cliente"
-        value="{{ booking['fk_cliente'] }}"
-        required
-      />
-    </div>
-    <div class="mb-3">
-      <label for="fk_voo" class="form-label">Voo</label>
-      <input
-        type="number"
-        class="form-control"
-        id="fk_voo"
-        name="fk_voo"
-        value="{{ booking['fk_voo'] }}"
-        required
-      />
-    </div>
-    <div class="mb-3">
-      <label for="data" class="form-label">Data e Hora</label>
-      <input
-        type="datetime-local"
-        class="form-control"
-        id="data"
-        name="data"
-        value="{{ booking['data'] }}"
-        required
-      />
-    </div>
-    <button type="submit" class="btn btn-success">Salvar</button>
+<h2>Atualizar Reserva</h2>
+<form class="form" method="post">
+  <fieldset class="form__group">
+    <label for="fk_cliente" class="form-label">Cliente</label>
+    <input
+      type="number"
+      class="form-control"
+      id="fk_cliente"
+      name="fk_cliente"
+      value="{{ booking['fk_cliente'] }}"
+      required
+    />
+  </fieldset>
+  <fieldset class="form__group">
+    <label for="fk_voo" class="form-label">Voo</label>
+    <input
+      type="number"
+      class="form-control"
+      id="fk_voo"
+      name="fk_voo"
+      value="{{ booking['fk_voo'] }}"
+      required
+    />
+  </fieldset>
+  <fieldset class="form__group">
+    <label for="data" class="form-label">Data e Hora</label>
+    <input
+      type="datetime-local"
+      class="form-control"
+      id="data"
+      name="data"
+      value="{{ booking['data'] }}"
+      required
+    />
+  </fieldset>
+  <fieldset class="form__group form__actions">
+    <button type="submit" class="form__button">Salvar</button>
     <a
       href="{{ url_for('bookings.index_bookings_route') }}"
-      class="btn btn-secondary"
-      >Cancelar</a
+      class="form__actions__link"
+      >Voltar</a
     >
-  </form>
-</div>
-
-<!-- Scripts do Bootstrap -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  </fieldset>
+</form>
 {% endblock %}

@@ -1,42 +1,35 @@
-{% extends 'base.html' %}
-
-{% block content %}
-<div class="container mt-5">
-  <h1 class="mb-4">Editar Usuário</h1>
-
-  <!-- Formulário para editar usuário -->
-  <form method="post">
-    <div class="mb-3">
-      <label for="nome" class="form-label">Nome</label>
-      <input
-        type="text"
-        class="form-control"
-        id="nome"
-        name="nome"
-        value="{{ user['nome'] }}"
-        required
-      />
-    </div>
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input
-        type="email"
-        class="form-control"
-        id="email"
-        name="email"
-        value="{{ user['email'] }}"
-        required
-      />
-    </div>
-    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+{% extends 'base.html' %} {% block content %}
+<h2>Editar Usuário</h2>
+<form class="form" method="post">
+  <fieldset class="form__group">
+    <label for="nome" class="form-label">Nome</label>
+    <input
+      type="text"
+      class="form-control"
+      id="nome"
+      name="nome"
+      value="{{ user['nome'] }}"
+      required
+    />
+  </fieldset>
+  <fieldset class="form__group">
+    <label for="email" class="form-label">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      value="{{ user['email'] }}"
+      required
+    />
+  </fieldset>
+  <fieldset class="form__group form__actions">
+    <button type="submit" class="form__button">Salvar</button>
     <a
       href="{{ url_for('clients.index_clientes_route') }}"
-      class="btn btn-secondary"
-      >Cancelar</a
+      class="form__actions__link"
+      >Voltar</a
     >
-  </form>
-</div>
-
-<!-- Scripts do Bootstrap -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  </fieldset>
+</form>
 {% endblock %}

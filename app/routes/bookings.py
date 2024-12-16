@@ -3,7 +3,7 @@ from src.utils.util_bookings import *
 
 bookings_bp = Blueprint('bookings', __name__)
 
-@bookings_bp.route('/bookings')
+@bookings_bp.route('/')
 def index_bookings_route():
     return index_reservas()
 
