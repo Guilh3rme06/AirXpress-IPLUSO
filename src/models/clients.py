@@ -59,4 +59,4 @@ def delete_cliente(user_id):
     Deleta um cliente do banco de dados.
     :param user_id: id do cliente.
     """
-    execute_query('DELETE FROM clientes WHERE pk_cliente = ?', (user_id,), True)
+    execute_query('DELETE FROM clientes WHERE pk_cliente = ?', (user_id,))
