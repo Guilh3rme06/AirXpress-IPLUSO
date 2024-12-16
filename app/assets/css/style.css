@@ -123,6 +123,57 @@ body {
   row-gap: 1rem;
 }
 
+.table__frame {
+  width: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+  margin-bottom: 0 !important;
+}
+
+.table__heading tr th:nth-child(1) {
+  border-radius: 0.5rem 0 0 0;
+}
+
+tbody tr:last-child td:last-child {
+  border-radius: 0 0 0.5rem 0;
+}
+
+.table__actions {
+  text-align: center;
+}
+
+.table__actions-row {
+  display: flex;
+  justify-content: center;
+  column-gap: 0.5rem;
+}
+
+.table__actions-link {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem 0;
+  color: #333;
+  text-decoration: none;
+  background-color: #dfdfdf;
+  transition: background-color 0.3s;
+}
+
+.table__actions-link:hover {
+  background-color: #84b5c4;
+}
+
+.table__actions-link-delete {
+  background-color: transparent;
+}
+
+.table__actions-link-delete:hover {
+  background-color: #e6adad;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -149,18 +200,21 @@ body {
   column-gap: 0.75rem;
 }
 
-.form__button {
+.form__button,
+.table__button {
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 0.5rem 0;
   background-color: #5299ae;
   color: #f4f4f4;
   font-weight: bold;
+  text-decoration: none;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.form__button:hover {
+.form__button:hover,
+.table__button:hover {
   background-color: #3a7a8c;
 }
 
