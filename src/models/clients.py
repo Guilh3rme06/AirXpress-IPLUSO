@@ -9,8 +9,7 @@ def insert_cliente(nome, email):
     """
     execute_query(
         "INSERT INTO clientes (nome, email) VALUES (?, ?);",
-        (nome, email),
-        True
+        (nome, email)
     )
     logging.info("Cliente inserido com sucesso!")
     
