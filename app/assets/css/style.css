@@ -135,7 +135,8 @@ body {
   width: 100%;
 }
 
-.form-control:focus {
+.form-control:focus,
+.form-select:focus {
   border-color: #5299ae;
   box-shadow: 0 0 5px rgba(82, 153, 174, 0.5);
   outline: none;
