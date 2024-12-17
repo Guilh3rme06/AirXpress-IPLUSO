@@ -33,6 +33,14 @@ def get_clientes():
     """
     return fetch_all_from_table("clientes")	
 
+def get_cliente(user_id):
+    """
+    Retorna um cliente específico.
+    :param user_id: id do cliente.
+    :return: dicionário com os dados do cliente.
+    """
+    return fetch_query('SELECT * FROM clientes WHERE pk_cliente = ?', (user_id,), fetch_one=True)
+
 def update_cliente(nome, email, user_id):
     """
     Atualiza os dados de um cliente no banco de dados.
@@ -45,17 +53,16 @@ def update_cliente(nome, email, user_id):
         (nome, email, user_id),
         True)
 
-def get_cliente(user_id):
-    """
-    Retorna um cliente específico.
-    :param user_id: id do cliente.
-    :return: dicionário com os dados do cliente.
-    """
-    return fetch_query('SELECT * FROM clientes WHERE pk_cliente = ?', (user_id,), fetch_one=True)
-
 def delete_cliente(user_id):
     """
     Deleta um cliente do banco de dados.
     :param user_id: id do cliente.
     """
     execute_query('DELETE FROM clientes WHERE pk_cliente = ?', (user_id,))
+    
+def count_clientes():
+    """
+    Retorna a quantidade de clientes cadastrados.
+    :return: quantidade de clientes cadastrados.
+    """
+    return fetch_query('SELECT COUNT(*) FROM clientes', fetch_one=True)['COUNT(*)']

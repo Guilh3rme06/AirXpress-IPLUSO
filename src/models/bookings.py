@@ -62,3 +62,10 @@ def delete_reserva(reserva_id):
     """
     execute_query('DELETE FROM reservas WHERE pk_reserva = ?', (reserva_id,))
     logging.info(f"Reserva {reserva_id} deletada com sucesso!")
+    
+def count_reservas():
+    """
+    Retorna a quantidade de reservas cadastradas.
+    :return: quantidade de reservas.
+    """
+    return fetch_query('SELECT COUNT(*) FROM reservas;', fetch_one=True)['COUNT(*)']
