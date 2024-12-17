@@ -42,7 +42,9 @@ def execute_query(query, params=None, trim=False):
             if params:
                 if trim:
                     params = trimmer(params)
-                cursor.execute(query, params)
+                    cursor.execute(query, *params)
+                else:
+                    cursor.execute(query, params)
             else:
                 cursor.execute(query)
             conn.commit()
@@ -77,6 +79,16 @@ def fetch_query(query, params=None, fetch_one=False):
         except sqlite3.Error as e:
             logging.error(f"Erro ao buscar dados: {e}")
             return None
+
+def fetch_all_from_table(table_name):
+    """
+    Retorna todos os registros de uma tabela específica.
+    :param table_name: Nome da tabela.
+    :return: Lista de dicionários contendo os registros da tabela.
+    """
+    if table_name not in TABLES.keys():
+        raise ValueError(f"Tabela '{table_name}' não permitida. Tabelas válidas: {', '.join(TABLES.keys())}")
+    return fetch_query(f"SELECT * FROM {table_name}")
 
 def initialize_db():
     """

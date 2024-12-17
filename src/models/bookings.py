@@ -1,5 +1,5 @@
 import logging
-from db.database import execute_query, fetch_query
+from db.database import execute_query, fetch_all_from_table, fetch_query
 
 def insert_reserva(fk_cliente, fk_voo, data):
     """
@@ -70,3 +70,10 @@ def delete_reserva(reserva_id):
     """
     execute_query('DELETE FROM reservas WHERE pk_reserva = ?', (reserva_id,))
     logging.info(f"Reserva {reserva_id} deletada com sucesso!")
+    
+def count_reservas():
+    """
+    Retorna a quantidade de reservas cadastradas.
+    :return: quantidade de reservas.
+    """
+    return fetch_query('SELECT COUNT(*) FROM reservas;', fetch_one=True)['COUNT(*)']

@@ -1,5 +1,5 @@
 import logging
-from db.database import execute_query, fetch_query
+from db.database import execute_query, fetch_all_from_table, fetch_query
 
 def insert_voo(origem, destino, datahora_partida, datahora_chegada, status, fk_aviao):
     """
@@ -34,7 +34,7 @@ def get_voos():
     Retorna todos os voos cadastrados no banco de dados.
     :return: Lista de dicionários com os dados dos voos.
     """
-    return fetch_query("SELECT * FROM voos;")
+    return fetch_all_from_table("voos")
 
 def get_voo_by_id(pk_voo):
     """
@@ -72,6 +72,20 @@ def delete_voo(pk_voo):
     """
     execute_query("DELETE FROM voos WHERE pk_voo = ?;", (pk_voo,))
     logging.info(f"Voo com ID {pk_voo} deletado com sucesso!")
+    
+def count_voos():
+    """
+    Retorna a quantidade total de voos cadastrados.
+    :return: Total de voos.
+    """
+    return fetch_query("SELECT COUNT(*) as total FROM voos;", fetch_one=True)["total"]
+
+def count_voos_ativos():
+    """
+    Retorna a quantidade de voos ativos (planejados ou em andamento).
+    :return: Total de voos ativos.
+    """
+    return fetch_query("SELECT COUNT(*) as total FROM voos WHERE status IN ('planejado', 'em andamento');", fetch_one=True)["total"]
 
 def search_voos(origem=None, destino=None):
     """
