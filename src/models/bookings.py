@@ -1,5 +1,5 @@
 import logging
-from db.database import execute_query, fetch_query
+from db.database import execute_query, fetch_all_from_table, fetch_query
 
 def insert_reserva(fk_cliente, fk_voo, data):
     """
@@ -31,7 +31,7 @@ def get_reservas():
     Retorna todas as reservas cadastradas.
     :return: lista de dicionários com os dados das reservas.
     """
-    return fetch_query('SELECT * FROM reservas')
+    return fetch_all_from_table("reservas")
 
 def get_reserva(reserva_id):
     """

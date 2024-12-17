@@ -1,5 +1,5 @@
 import logging
-from db.database import execute_query, fetch_query
+from db.database import execute_query, fetch_all_from_table, fetch_query
 
 def insert_voo(origem, destino, datahora_partida, datahora_chegada, status, fk_aviao):
     """
@@ -34,7 +34,7 @@ def get_voos():
     Retorna todos os voos cadastrados no banco de dados.
     :return: Lista de dicionários com os dados dos voos.
     """
-    return fetch_query("SELECT * FROM voos;")
+    return fetch_all_from_table("voos")
 
 def get_voo_by_id(pk_voo):
     """

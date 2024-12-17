@@ -1,5 +1,5 @@
 import logging
-from db.database import execute_query, fetch_query
+from db.database import execute_query, fetch_all_from_table, fetch_query
 
 def insert_cliente(nome, email):
     """
@@ -31,7 +31,7 @@ def get_clientes():
     Retorna todos os clientes cadastrados.
     :return: lista de dicionários com os dados dos clientes.
     """
-    return fetch_query("SELECT * FROM clientes;")
+    return fetch_all_from_table("clientes")	
 
 def update_cliente(nome, email, user_id):
     """
