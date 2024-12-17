@@ -1,24 +1,74 @@
 {% extends 'base.html' %} {% block content %}
-<p class="index__text">
-  Exercicio da Unidade Curricular de Fundamentos de Base de Dados, na
-  instituição
-  <a
-    class="index__link"
-    href="https://www.ipluso.pt/ctesp/ctesp-em-desenvolvimento-para-a-web-e-dispositivos-moveis"
-    target="_blank"
-    >IPLUSO</a
-  >, lecionada pelo
-  <a
-    class="index__link"
-    href="https://www.linkedin.com/in/tiagocunhareis/"
-    target="_blank"
-    >Prof. Doutor Tiago Cunha Reis</a
-  >.
-</p>
-<section class="index__section">
+<section class="index__banner">
+  <div class="container">
+    <h1 class="banner__title">AIRXPRESS</h1>
+    <p class="banner__text">
+      Bem-vindo ao AirXpress, um sistema de gestão de voos e reservas de
+      passagens aéreas.
+    </p>
+  </div>
+</section>
+<section class="kpis">
+  <div class="kpis__item">
+    <h2 class="kpis__title">
+      <a
+        class="kpis__link"
+        href="{{ url_for('clients.index_clientes_route') }}"
+      >
+        Total de Clientes
+      </a>
+    </h2>
+    <p class="kpis__value">{{ total_clientes }}</p>
+  </div>
+  <div class="kpis__item">
+    <h2 class="kpis__title">
+      <a class="kpis__link" href="{{ url_for('flights.index_flights_route') }}"
+        >Total de Voos</a
+      >
+    </h2>
+    <p class="kpis__value">{{ total_voos }}</p>
+  </div>
+  <div class="kpis__item">
+    <h2 class="kpis__title">
+      <a class="kpis__link" href="{{ url_for('flights.index_flights_route') }}">
+        Total de Voos Ativos
+      </a>
+    </h2>
+    <p class="kpis__value">{{ total_voos_ativos }}</p>
+  </div>
+  <div class="kpis__item">
+    <h2 class="kpis__title">
+      <a
+        class="kpis__link"
+        href="{{ url_for('bookings.index_bookings_route') }}"
+        >Total de Reservas</a
+      >
+    </h2>
+    <p class="kpis__value">{{ total_reservas }}</p>
+  </div>
+</section>
+<section class="index__contributors">
   <h2>Contribuidores</h2>
   <a href="https://github.com/Guilh3rme06/AirXpress-IPLUSO/graphs/contributors">
     <img src="https://contrib.rocks/image?repo=Guilh3rme06/AirXpress-IPLUSO" />
   </a>
+</section>
+<section class="index__info">
+  <p class="info__text">
+    Exercicio da Unidade Curricular de Fundamentos de Base de Dados, na
+    instituição
+    <a
+      class="info__link"
+      href="https://www.ipluso.pt/ctesp/ctesp-em-desenvolvimento-para-a-web-e-dispositivos-moveis"
+      target="_blank"
+      >IPLUSO</a
+    >, lecionada pelo
+    <a
+      class="info__link"
+      href="https://www.linkedin.com/in/tiagocunhareis/"
+      target="_blank"
+      >Prof. Doutor Tiago Cunha Reis</a
+    >.
+  </p>
 </section>
 {% endblock %}
