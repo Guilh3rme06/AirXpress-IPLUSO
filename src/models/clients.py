@@ -33,6 +33,13 @@ def get_clientes():
     """
     return fetch_query("SELECT * FROM clientes;")
 
+def get_all_clients():
+    """
+    Retorna todos os clientes cadastrados.
+    :return: lista de clientes.
+    """
+    return fetch_query('SELECT pk_cliente, nome FROM clientes')
+
 def update_cliente(nome, email, user_id):
     """
     Atualiza os dados de um cliente no banco de dados.

@@ -28,10 +28,18 @@ def insert_reservas(reservas):
 
 def get_reservas():
     """
-    Retorna todas as reservas cadastradas.
+    Retorna todas as reservas cadastradas, incluindo o nome do cliente.
     :return: lista de dicionários com os dados das reservas.
     """
-    return fetch_query('SELECT * FROM reservas')
+    return fetch_query('''
+        SELECT 
+            reservas.pk_reserva, 
+            clientes.nome AS nome_cliente, 
+            reservas.fk_voo, 
+            reservas.data
+        FROM reservas
+        JOIN clientes ON reservas.fk_cliente = clientes.pk_cliente
+    ''')
 
 def get_reserva(reserva_id):
     """

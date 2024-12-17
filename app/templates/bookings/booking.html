@@ -5,7 +5,7 @@
     <thead class="table__heading">
       <tr>
         <th>ID</th>
-        <th>Nome cliente</th>
+        <th>Nome Cliente</th>
         <th>ID Voo</th>
         <th>Data</th>
         <th class="table__actions">Ações</th>
@@ -15,7 +15,7 @@
       {% for booking in bookings %}
       <tr>
         <td>{{ booking['pk_reserva'] }}</td>
-        <td>{{ booking['fk_cliente'] }}</td>
+        <td>{{ booking['nome_cliente'] }}</td>
         <td>{{ booking['fk_voo'] }}</td>
         <td>{{ booking['data'] }}</td>
         <td class="table__actions table__actions-row">
