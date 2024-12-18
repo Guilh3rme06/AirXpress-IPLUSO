@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from datetime import datetime
 from src.models.bookings import delete_reserva, get_reserva, get_reservas, insert_reserva, update_reserva
-
+from src.models.clients import get_all_clients  # Supondo que essa função recupere todos os clientes
 def index_reservas():
     """
     Lista as reservas do banco de dados.
@@ -16,14 +16,17 @@ def add_booking():
     :return: redireciona para a página de reservas.
     """
     if request.method == 'POST':
-        fk_cliente = request.form['fk_cliente']
+        fk_cliente = request.form['fk_cliente']  # Agora será um ID de cliente selecionado
         fk_voo = request.form['fk_voo']
         data = request.form['data']
         # Converter para o formato "YYYY-MM-DD HH:MM:SS"
         data_formatada = datetime.strptime(data, "%Y-%m-%dT%H:%M").strftime("%d-%m-%Y %H:%M:%S")
         insert_reserva(fk_cliente, fk_voo, data_formatada)
         return redirect(url_for('bookings.index_bookings_route'))
-    return render_template('bookings/add_booking.html', title='Adicionar Reserva | AirXpress')
+    
+    # Obtenha todos os clientes para o dropdown
+    clientes = get_all_clients()  # Supondo que você tenha essa função que retorna todos os clientes
+    return render_template('bookings/add_booking.html', title='Adicionar Reserva | AirXpress', clientes=clientes)
 
 def update_booking(booking_id):
     """

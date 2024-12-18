@@ -1,6 +1,6 @@
 import logging
 
-from db.database import execute_query, fetch_query
+from db.database import execute_query, fetch_all_from_table, fetch_query
 
 def insert_aviao(fabricante, modelo, capacidade):
     """
@@ -31,7 +31,7 @@ def select_avioes():
     Seleciona todos os aviões do banco de dados.
     :return: lista de tuplas com os aviões.
     """
-    return fetch_query("SELECT * FROM avioes;")
+    return fetch_all_from_table("avioes")
 
 def select_aviao(pk_aviao):
     """
