@@ -51,7 +51,37 @@
     </tbody>
   </table>
 </div>
-<a href="{{ url_for('bookings.add_bookings_route') }}" class="table__button"
-  >Adicionar Nova Reserva</a
->
+
+<div class="table__buttons">
+  <a href="{{ url_for('bookings.add_bookings_route') }}" class="table__button"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      width="18"
+      stroke="currentColor"
+    >
+      <path d="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z"></path>
+    </svg>
+    Novo Reservas</a
+  >
+  <a
+    href="{{ url_for('export.export_table', table_name='reservas') }}"
+    class="table__button table__button-export"
+    >Exportar Reservas
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      width="18"
+      stroke="currentColor"
+    >
+      <path
+        d="M3 19H21V21H3V19ZM13 13.1716L19.0711 7.1005L20.4853 8.51472L12 17L3.51472 8.51472L4.92893 7.1005L11 13.1716V2H13V13.1716Z"
+      ></path></svg
+  ></a>
+</div>
+
+
+
 {% endblock %}
