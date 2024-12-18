@@ -27,7 +27,7 @@ TABLES = {
     "voos": """
         CREATE TABLE IF NOT EXISTS voos (
             pk_voo INTEGER PRIMARY KEY,
-            codigo_voo TEXT NOT NULL UNIQUE CHECK (codigo_voo LIKE '___YYYYMMDD-___'),
+            codigo_voo TEXT NOT NULL UNIQUE CHECK (codigo_voo LIKE '___%-%'),
             fk_origem INTEGER NOT NULL,
             fk_destino INTEGER NOT NULL,
             datahora_partida TEXT NOT NULL,
