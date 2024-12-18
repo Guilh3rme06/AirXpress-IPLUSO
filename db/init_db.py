@@ -9,7 +9,7 @@ from db.database import initialize_db
 from seed_data import CLIENTES, AVIOES, AEROPORTOS, VOOS, RESERVAS
 from src.models.clients import insert_clientes
 from src.models.planes import insert_avioes
-from models.airports import insert_aeroportos
+from src.models.airports import insert_aeroportos
 from src.models.flights import insert_voos
 from src.models.bookings import insert_reservas
 
