@@ -1,7 +1,6 @@
 import sqlite3
 import logging
 from db.db_schemas import TABLES
-from src.utils import trimmer
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -40,11 +39,7 @@ def execute_query(query, params=None, trim=False):
         try:
             cursor = conn.cursor()
             if params:
-                if trim:
-                    params = trimmer(params)
-                    cursor.execute(query, *params)
-                else:
-                    cursor.execute(query, params)
+                cursor.execute(query, params)
             else:
                 cursor.execute(query)
             conn.commit()
