@@ -1,16 +1,19 @@
 import logging
-from db.database import execute_query, fetch_all_from_table, fetch_query
+from db.database import execute_query, fetch_query
 
-def insert_reserva(fk_cliente, fk_voo, data):
+def insert_reserva(fk_cliente, fk_voo, data, status, classe, assento):
     """
     Insere uma reserva no banco de dados.
     :param fk_cliente: chave estrangeira do cliente.
     :param fk_voo: chave estrangeira do voo.
     :param data: data da reserva.
+    :param status: status da reserva.
+    :param classe: classe da reserva.
+    :param assento: assento da reserva.
     """
     execute_query(
-        "INSERT INTO reservas (fk_cliente, fk_voo, data) VALUES (?, ?, ?);",
-        (fk_cliente, fk_voo, data)
+        "INSERT INTO reservas (fk_cliente, fk_voo, data, status, classe, assento) VALUES (?, ?, ?, ?, ?, ?);",
+        (fk_cliente, fk_voo, data, status, classe, assento)
     )
     logging.info("Reserva inserida com sucesso!")
 
@@ -21,8 +24,8 @@ def insert_reservas(reservas):
     """
     for reserva in reservas:
         execute_query(
-            "INSERT INTO reservas (fk_cliente, fk_voo, data) VALUES (?, ?, ?);",
-            (reserva["fk_cliente"], reserva["fk_voo"], reserva["data"])
+            "INSERT INTO reservas (fk_cliente, fk_voo, data, status, classe, assento) VALUES (?, ?, ?, ?, ?, ?);",
+            (reserva["fk_cliente"], reserva["fk_voo"], reserva["data"], reserva["status"], reserva["classe"], reserva["assento"])
         )
     logging.info(f"{len(reservas)} reservas inseridas com sucesso!")
 
