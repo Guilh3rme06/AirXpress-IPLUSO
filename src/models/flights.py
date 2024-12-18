@@ -14,7 +14,7 @@ def insert_voo(origem, destino, datahora_partida, datahora_chegada, status, fk_a
     """
     codigo_voo = generate_flight_code(origem, datahora_partida[:10])
     execute_query(
-        "INSERT INTO voos (codigo_voo, origem, destino, datahora_partida, datahora_chegada, status, fk_aviao) VALUES (?, ?, ?, ?, ?, ?, ?);",
+        "INSERT INTO voos (codigo_voo, fk_origem, fk_destino, datahora_partida, datahora_chegada, status, fk_aviao) VALUES (?, ?, ?, ?, ?, ?, ?);",
         (codigo_voo, origem, destino, datahora_partida, datahora_chegada, status, fk_aviao)
     )
     logging.info("Voo inserido com sucesso!")
@@ -26,8 +26,8 @@ def insert_voos(voos):
     """
     for voo in voos:
         execute_query(
-            "INSERT INTO voos (codigo_voo, origem, destino, datahora_partida, datahora_chegada, status, fk_aviao) VALUES (?, ?, ?, ?, ?, ?, ?);",
-            (voo["codigo_voo"], voo["origem"], voo["destino"], voo["datahora_partida"], voo["datahora_chegada"], voo["status"], voo["fk_aviao"])
+            "INSERT INTO voos (codigo_voo, fk_origem, fk_destino, datahora_partida, datahora_chegada, status, fk_aviao) VALUES (?, ?, ?, ?, ?, ?, ?);",
+            (voo["codigo_voo"], voo["fk_origem"], voo["fk_destino"], voo["datahora_partida"], voo["datahora_chegada"], voo["status"], voo["fk_aviao"])
         )
     logging.info(f"{len(voos)} voos inseridos com sucesso!")
 
