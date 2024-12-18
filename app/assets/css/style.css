@@ -43,6 +43,7 @@ body {
   background-color: #333;
   color: #fff;
   z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header__nav {
@@ -341,6 +342,7 @@ tbody tr:last-child td:last-child {
   text-align: center;
   width: 100%;
   bottom: 0;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1), 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .footer__content {
