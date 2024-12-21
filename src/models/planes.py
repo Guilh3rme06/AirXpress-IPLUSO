@@ -26,6 +26,13 @@ def insert_avioes(avioes):
         )
     logging.info(f"{len(avioes)} aviões inseridos com sucesso!")
     
+def get_fabricante_modelo_avioes():
+    """
+    Retorna uma lista de tuplas com o fabricante e modelo dos aviões.
+    :return: lista de tuplas com o fabricante e modelo dos aviões.
+    """
+    return fetch_query("SELECT pk_aviao, fabricante, modelo FROM avioes;")
+    
 def select_avioes():
     """
     Seleciona todos os aviões do banco de dados.
