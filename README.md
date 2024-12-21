@@ -33,6 +33,7 @@ O **AirXpress** é uma aplicação web desenvolvida em Python com o framework Fl
 
 - **Interface Web:** Interaja com a aplicação através de páginas HTML dinâmicas.
 - **Armazenamento Local:** Persistência de dados utilizando o banco de dados SQLite3.
+- **Exportação para CSV:** Exporte dados de voos, clientes e reservas em arquivos CSV.
 - **Organização Modular:** Código estruturado com rotas, serviços, templates e modelos.
 
 ## 🛠️ Tecnologias Utilizadas
@@ -41,6 +42,7 @@ O **AirXpress** é uma aplicação web desenvolvida em Python com o framework Fl
 - **Flask** 🌐 — Framework web para criação de aplicações escaláveis.
 - **SQLite3** 📂 — Banco de dados relacional local.
 - **HTML5 + CSS3** 🎨 — Templates estilizados para a interface da aplicação.
+- **CSV (Biblioteca Python)** 📑 — Utilizada para exportar dados em formato CSV.
 <!--- **JavaScript** ⚡ — Scripts para interatividade e funcionalidades adicionais no front-end. -->
 
 ## ⚙️ Como Executar o Projeto
@@ -99,6 +101,12 @@ A aplicação estará disponível em: [http://127.0.0.1:5000](http://127.0.0.1:5
 ├── run.py                 # Ponto de entrada principal da aplicação
 └── README.md              # Documentação do projeto
 ```
+
+## 📸 Preview
+
+Aqui está uma visão geral da interface da aplicação:
+
+![AirXpress Preview](app/assets/img/preview.png)
 
 ## 🧩 Próximos Passos
 

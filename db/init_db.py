@@ -6,9 +6,10 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 from db.database import initialize_db
-from seed_data import CLIENTES, AVIOES, VOOS, RESERVAS
+from seed_data import CLIENTES, AVIOES, AEROPORTOS, VOOS, RESERVAS
 from src.models.clients import insert_clientes
 from src.models.planes import insert_avioes
+from src.models.airports import insert_aeroportos
 from src.models.flights import insert_voos
 from src.models.bookings import insert_reservas
 
@@ -20,6 +21,7 @@ def seed_data():
         # Inserção nas tabelas
         insert_clientes(CLIENTES)
         insert_avioes(AVIOES)
+        insert_aeroportos(AEROPORTOS)
         insert_voos(VOOS)
         insert_reservas(RESERVAS)
 

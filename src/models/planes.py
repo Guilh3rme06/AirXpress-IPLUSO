@@ -1,6 +1,6 @@
 import logging
 
-from db.database import execute_query, fetch_query
+from db.database import execute_query, fetch_all_from_table, fetch_query
 
 def insert_aviao(fabricante, modelo, capacidade):
     """
@@ -26,12 +26,19 @@ def insert_avioes(avioes):
         )
     logging.info(f"{len(avioes)} aviões inseridos com sucesso!")
     
+def get_fabricante_modelo_avioes():
+    """
+    Retorna uma lista de tuplas com o fabricante e modelo dos aviões.
+    :return: lista de tuplas com o fabricante e modelo dos aviões.
+    """
+    return fetch_query("SELECT pk_aviao, fabricante, modelo FROM avioes;")
+    
 def select_avioes():
     """
     Seleciona todos os aviões do banco de dados.
     :return: lista de tuplas com os aviões.
     """
-    return fetch_query("SELECT * FROM avioes;")
+    return fetch_all_from_table("avioes")
 
 def select_aviao(pk_aviao):
     """
