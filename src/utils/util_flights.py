@@ -1,7 +1,7 @@
 from datetime import datetime
 import logging
 from flask import render_template, request, redirect, url_for
-from src.models.flights import delete_voo, get_voo_by_id, get_voos, insert_voo, update_voo
+from src.models.flights import delete_voo, get_voo_by_id, get_voos_com_detalhes, insert_voo, update_voo
 
 # Configuração do logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -12,7 +12,7 @@ def index_flights():
     """
     Rota para a página inicial de voos.
     """
-    flights = get_voos()
+    flights = get_voos_com_detalhes()
     return render_template('flights/flights.html', flights=flights, title='Voos | AirXpress')
 
 def add_flights():

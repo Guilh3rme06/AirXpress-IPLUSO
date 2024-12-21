@@ -38,6 +38,25 @@ def get_voos():
     """
     return fetch_all_from_table("voos")
 
+def get_voos_com_detalhes():
+    """
+    Retorna todos os voos cadastrados no banco de dados, incluindo detalhes dos aeroportos de origem e destino.
+    :return: Lista de dicionários com os dados dos voos.
+    """
+    return fetch_query('''
+        SELECT 
+            voos.pk_voo,
+            voos.codigo_voo, 
+            voos.datahora_partida, 
+            voos.datahora_chegada, 
+            origem.cidade AS cidade_origem, 
+            destino.cidade AS cidade_destino,  
+            voos.status
+        FROM voos
+        JOIN aeroportos AS origem ON voos.fk_origem = origem.pk_aeroporto
+        JOIN aeroportos AS destino ON voos.fk_destino = destino.pk_aeroporto
+    ''')
+
 def get_voo_by_id(pk_voo):
     """
     Retorna os detalhes de um voo com base no ID.

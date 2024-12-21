@@ -4,11 +4,11 @@
   <table class="table table-striped">
     <thead class="table__heading">
       <tr>
-        <th>ID</th>
-        <th>Origem</th>
-        <th>Destino</th>
+        <th>Codigo</th>
         <th>Data Partida</th>
         <th>Data Chegada</th>
+        <th>Origem</th>
+        <th>Destino</th>
         <th>Status</th>
         <th class="table__actions">Ações</th>
       </tr>
@@ -16,11 +16,11 @@
     <tbody>
       {% for flight in flights %}
       <tr>
-        <td>{{ flight['pk_voo'] }}</td>
-        <td>{{ flight['origem'] }}</td>
-        <td>{{ flight['destino'] }}</td>
+        <td>{{ flight['codigo_voo'] }}</td>
         <td>{{ flight['datahora_partida'] }}</td>
         <td>{{ flight['datahora_chegada'] }}</td>
+        <td>{{ flight['cidade_origem'] }}</td>
+        <td>{{ flight['cidade_destino'] }}</td>
         <td>{{flight['status']}}</td>
         <td class="table__actions table__actions-row">
           <a
@@ -85,6 +85,5 @@
       ></path></svg
   ></a>
 </div>
-
 
 {% endblock %}
