@@ -19,8 +19,10 @@
         <td>{{ flight['codigo_voo'] }}</td>
         <td>{{ flight['datahora_partida'] }}</td>
         <td>{{ flight['datahora_chegada'] }}</td>
-        <td>{{ flight['cidade_origem'] }}</td>
-        <td>{{ flight['cidade_destino'] }}</td>
+        <td>{{ flight['codigo_origem'] ~ ' - ' ~ flight['cidade_origem'] }}</td>
+        <td>
+          {{ flight['codigo_origem'] ~ ' - ' ~ flight['cidade_destino'] }}
+        </td>
         <td>{{flight['status']}}</td>
         <td class="table__actions table__actions-row">
           <a

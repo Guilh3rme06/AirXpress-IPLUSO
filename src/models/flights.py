@@ -49,7 +49,9 @@ def get_voos_com_detalhes():
             voos.codigo_voo, 
             voos.datahora_partida, 
             voos.datahora_chegada, 
+            origem.codigo AS codigo_origem,
             origem.cidade AS cidade_origem, 
+            destino.codigo AS codigo_destino,
             destino.cidade AS cidade_destino,  
             voos.status
         FROM voos
