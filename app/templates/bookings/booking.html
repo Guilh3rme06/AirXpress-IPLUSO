@@ -5,9 +5,12 @@
     <thead class="table__heading">
       <tr>
         <th>ID</th>
-        <th>Nome Cliente</th>
-        <th>ID Voo</th>
         <th>Data</th>
+        <th>Nome Cliente</th>
+        <th>Codigo Voo</th>
+        <th>assento</th>
+        <th>classe</th>
+        <th>status</th>
         <th class="table__actions">Ações</th>
       </tr>
     </thead>
@@ -15,9 +18,12 @@
       {% for booking in bookings %}
       <tr>
         <td>{{ booking['pk_reserva'] }}</td>
-        <td>{{ booking['nome_cliente'] }}</td>
-        <td>{{ booking['fk_voo'] }}</td>
         <td>{{ booking['data'] }}</td>
+        <td>{{ booking['nome_cliente'] }}</td>
+        <td>{{ booking['codigo_voo'] }}</td>
+        <td>{{ booking['assento'] }}</td>
+        <td>{{ booking['classe'] }}</td>
+        <td>{{ booking['status'] }}</td>
         <td class="table__actions table__actions-row">
           <a
             href="{{ url_for('bookings.update_bookings_route', reserva_id=booking['pk_reserva']) }}"
@@ -81,7 +87,5 @@
       ></path></svg
   ></a>
 </div>
-
-
 
 {% endblock %}

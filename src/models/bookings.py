@@ -38,10 +38,14 @@ def get_reservas():
         SELECT 
             reservas.pk_reserva, 
             clientes.nome AS nome_cliente, 
-            reservas.fk_voo, 
-            reservas.data
+            voos.codigo_voo, 
+            reservas.data,
+            reservas.status,
+            reservas.classe,
+            reservas.assento
         FROM reservas
         JOIN clientes ON reservas.fk_cliente = clientes.pk_cliente
+        JOIN voos ON reservas.fk_voo = voos.pk_voo
     ''')
 
 def get_reserva(reserva_id):
