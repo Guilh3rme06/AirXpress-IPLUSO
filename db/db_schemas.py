@@ -46,7 +46,7 @@ TABLES = {
             fk_voo INTEGER NOT NULL,
             data TEXT NOT NULL,
             status TEXT NOT NULL CHECK (status IN ('confirmada', 'cancelada', 'pendente')),
-            classe TEXT NOT NULL CHECK (classe IN ('econômica', 'executiva', 'primeira classe')),
+            classe TEXT NOT NULL CHECK (classe IN ('economica', 'executiva', 'primeira-classe')),
             assento TEXT NOT NULL,
             FOREIGN KEY(fk_cliente) REFERENCES clientes(pk_cliente),
             FOREIGN KEY(fk_voo) REFERENCES voos(pk_voo)
