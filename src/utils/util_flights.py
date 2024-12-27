@@ -58,10 +58,12 @@ def update_flights(voos_id):
         update_voo(voos_id, origem, destino, formatted_datahora_partida, formatted_datahora_chegada, status, 1)
         return redirect(url_for('flights.index_flights_route'))
     
+    avioes = get_fabricante_modelo_avioes()
+    aeroportos = select_aeroportos()
     flight = get_voo_by_id(voos_id)
     flight['datahora_partida'] = datetime.strptime(flight['datahora_partida'], '%d-%m-%Y %H:%M:%S').strftime('%Y-%m-%dT%H:%M')
     flight['datahora_chegada'] = datetime.strptime(flight['datahora_chegada'], '%d-%m-%Y %H:%M:%S').strftime('%Y-%m-%dT%H:%M')
-    return render_template('flights/update_flight.html', flight=flight, title='Atualizar Voo | AirXpress')
+    return render_template('flights/update_flight.html', title='Atualizar Voo | AirXpress', flight=flight, avioes=avioes, aeroportos=aeroportos)
 
 def delete_flights(voos_id):
     """
