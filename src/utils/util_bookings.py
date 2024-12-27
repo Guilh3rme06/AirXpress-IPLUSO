@@ -49,7 +49,9 @@ def update_booking(booking_id):
         return redirect(url_for('bookings.index_bookings_route'))
     booking = get_reserva(booking_id)
     booking['data'] = datetime.strptime(booking['data'], '%d-%m-%Y %H:%M:%S').strftime('%Y-%m-%dT%H:%M')
-    return render_template('bookings/update_booking.html', booking=booking, title='Atualizar Reserva | AirXpress')
+    flights = get_voos()
+    clientes = get_all_clients()
+    return render_template('bookings/update_booking.html', title='Atualizar Reserva | AirXpress', booking=booking, flights=flights, clientes=clientes)
 
 def delete_booking(booking_id):
     """
