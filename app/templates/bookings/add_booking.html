@@ -2,26 +2,6 @@
 <h2>Adicionar Nova Reserva</h2>
 <form class="form" method="post">
   <fieldset class="form__group">
-    <label for="fk_cliente" class="form-label">Cliente</label>
-    <input
-      type="number"
-      class="form-control"
-      id="fk_cliente"
-      name="fk_cliente"
-      required
-    />
-  </fieldset>
-  <fieldset class="form__group">
-    <label for="fk_voo" class="form-label">Voo</label>
-    <input
-      type="number"
-      class="form-control"
-      id="fk_voo"
-      name="fk_voo"
-      required
-    />
-  </fieldset>
-  <fieldset class="form__group">
     <label for="data" class="form-label">Data e Hora</label>
     <input
       type="datetime-local"
@@ -31,6 +11,43 @@
       value="{{ data_formatada }}"
       required
     />
+  </fieldset>
+  <fieldset class="form__group">
+    <label for="fk_cliente" class="form-label">Cliente</label>
+    <select class="form-select" id="fk_cliente" name="fk_cliente" required>
+      <option value="" selected disabled hidden>Selecione um cliente</option>
+      {% for cliente in clientes %}
+      <option value="{{ cliente.pk_cliente }}">{{ cliente.nome }}</option>
+      {% endfor %}
+    </select>
+  </fieldset>
+  <fieldset class="form__group">
+    <label for="fk_voo" class="form-label">Voo</label>
+    <select class="form-select" id="fk_voo" name="fk_voo" required>
+      <option value="" selected disabled hidden>Selecione um voo</option>
+      {% for flight in flights %}
+      <option value="{{ flight.pk_voo }}">{{ flight.codigo_voo }}</option>
+      {% endfor %}
+    </select>
+  </fieldset>
+  <fieldset class="form__group">
+    <label for="assento" class="form-label">Assento</label>
+    <input
+      type="text"
+      class="form-control"
+      id="assento"
+      name="assento"
+      required
+    />
+  </fieldset>
+  <fieldset class="form__group">
+    <label for="classe" class="form-label">Classe</label>
+    <select class="form-select" id="classe" name="classe" required>
+      <option value="" selected disabled hidden>Selecione a classe</option>
+      <option value="economica">Economica</option>
+      <option value="executiva">Executiva</option>
+      <option value="primeira-classe">Primeira Classe</option>
+    </select>
   </fieldset>
   <fieldset class="form__group form__actions">
     <button type="submit" class="form__button">Adicionar</button>
