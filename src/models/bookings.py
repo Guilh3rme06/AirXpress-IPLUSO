@@ -13,7 +13,7 @@ def insert_reserva(fk_cliente, fk_voo, data, status, classe, assento):
     """
     execute_query(
         "INSERT INTO reservas (fk_cliente, fk_voo, data, status, classe, assento) VALUES (?, ?, ?, ?, ?, ?);",
-        (fk_cliente, fk_voo, data, status, classe, assento)
+        (fk_cliente, fk_voo, data, status, classe, assento.upper())
     )
     logging.info("Reserva inserida com sucesso!")
 
@@ -25,7 +25,7 @@ def insert_reservas(reservas):
     for reserva in reservas:
         execute_query(
             "INSERT INTO reservas (fk_cliente, fk_voo, data, status, classe, assento) VALUES (?, ?, ?, ?, ?, ?);",
-            (reserva["fk_cliente"], reserva["fk_voo"], reserva["data"], reserva["status"], reserva["classe"], reserva["assento"])
+            (reserva["fk_cliente"], reserva["fk_voo"], reserva["data"], reserva["status"], reserva["classe"], reserva["assento"].upper())
         )
     logging.info(f"{len(reservas)} reservas inseridas com sucesso!")
 
